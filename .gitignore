@@ -1,0 +1,11 @@
+.classpath
+.externalToolBuilders
+.project
+.settings
+.tern-project
+*.jsfdia
+build
+.metadata
+.svn
+.DS_Store
+bin
