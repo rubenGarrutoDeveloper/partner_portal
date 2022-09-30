@@ -43,12 +43,9 @@ public class SecurityConfig
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
 	{
 
-		return http.authorizeRequests(configurer -> configurer
-				.anyRequest()
-				.authenticated()).formLogin(configurer -> configurer
-						.loginPage("/loginPage")
-						.loginProcessingUrl("/authenticateTheUser")
-						.permitAll())
+		return http.authorizeRequests(configurer -> configurer.anyRequest().authenticated())
+				.formLogin(configurer -> configurer.loginPage("/loginPage").loginProcessingUrl("/authenticateTheUser").permitAll())
+				.logout(logout -> logout.permitAll())
 				.build();
 	}
 
