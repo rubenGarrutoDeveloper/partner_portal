@@ -43,7 +43,7 @@ public class SecurityConfig
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
 	{
 
-		return http.authorizeRequests(configurer -> configurer.anyRequest().authenticated())
+		return http.authorizeRequests(configurer -> configurer.antMatchers("/css/**").permitAll().anyRequest().authenticated())
 				.formLogin(configurer -> configurer.loginPage("/loginPage").loginProcessingUrl("/authenticateTheUser").permitAll())
 				.logout(logout -> logout.permitAll())
 				.build();
