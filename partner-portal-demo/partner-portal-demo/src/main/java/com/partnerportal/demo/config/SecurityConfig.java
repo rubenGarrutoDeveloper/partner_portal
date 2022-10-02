@@ -20,19 +20,19 @@ public class SecurityConfig
 
 		UserDetails gabry = User.builder()
 				.username("gabry")
-				.password("{noop}test123")
+				.password("{noop}password")
 				.roles("BASIC-USER")
 				.build();
 
 		UserDetails matteo = User.builder()
 				.username("matteo")
-				.password("{noop}test123")
-				.roles("PARTNER-USER")
+				.password("{noop}password")
+				.roles("PARTNER-USER", "BASIC-USER")
 				.build();
 
 		UserDetails ruben = User.builder()
 				.username("ruben")
-				.password("{noop}test123")
+				.password("{noop}password")
 				.roles("ADMIN")
 				.build();
 
