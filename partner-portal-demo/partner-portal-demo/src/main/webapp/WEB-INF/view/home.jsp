@@ -15,6 +15,16 @@
 	Welcome <security:authentication property="principal.username"/>, to the partner portal!
 	<br>
 	</p>
+	<hr>
+	
+	<!-- navigation sections  -->	
+	<p>
+		<a href="${pageContext.request.contextPath}/projects">go to Projects</a>
+	</p>
+	
+	<p>
+		<a href="${pageContext.request.contextPath}/systems">go to Systems</a>
+	</p>
 	
 	<hr>
 	

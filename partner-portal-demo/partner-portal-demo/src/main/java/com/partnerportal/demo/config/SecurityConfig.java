@@ -21,19 +21,19 @@ public class SecurityConfig
 		UserDetails gabry = User.builder()
 				.username("gabry")
 				.password("{noop}password")
-				.roles("BASIC-USER")
+				.roles("USER")
 				.build();
 
 		UserDetails matteo = User.builder()
 				.username("matteo")
 				.password("{noop}password")
-				.roles("PARTNER-USER", "BASIC-USER")
+				.roles("USER", "PARTNER")
 				.build();
 
 		UserDetails ruben = User.builder()
 				.username("ruben")
 				.password("{noop}password")
-				.roles("ADMIN")
+				.roles("USER", "ADMIN")
 				.build();
 
 		return new InMemoryUserDetailsManager(gabry, matteo, ruben);
@@ -43,8 +43,15 @@ public class SecurityConfig
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
 	{
 
-		return http.authorizeRequests(configurer -> configurer.antMatchers("/css/**").permitAll().anyRequest().authenticated())
-				.formLogin(configurer -> configurer.loginPage("/loginPage").loginProcessingUrl("/authenticateTheUser").permitAll())
+		return http
+				.authorizeRequests(configurer -> configurer
+						.antMatchers("/").hasRole("USER")
+						.antMatchers("/projects/**").hasRole("PARTNER")
+						.antMatchers("/systems/**").hasRole("ADMIN"))
+				.formLogin(configurer -> configurer
+						.loginPage("/login")
+						.loginProcessingUrl("/authenticateTheUser")
+						.permitAll())
 				.logout(logout -> logout.permitAll())
 				.build();
 	}

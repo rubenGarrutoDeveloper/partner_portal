@@ -12,4 +12,16 @@ public class NavigationController
 		return "home";
 	}
 
+	@GetMapping("/projects")
+	public String goToGestioneProgetti()
+	{
+		return "projects";
+	}
+
+	@GetMapping("/systems")
+	public String goToSystems()
+	{
+		return "systems";
+	}
+
 }
