@@ -44,15 +44,19 @@ public class SecurityConfig
 	{
 
 		return http
-				.authorizeRequests(configurer -> configurer
+				.authorizeRequests(auth -> auth
 						.antMatchers("/").hasRole("USER")
 						.antMatchers("/projects/**").hasRole("PARTNER")
-						.antMatchers("/systems/**").hasRole("ADMIN"))
-				.formLogin(configurer -> configurer
+						.antMatchers("/admin/**").hasRole("ADMIN"))
+
+				.formLogin(formLogin -> formLogin
 						.loginPage("/login")
 						.loginProcessingUrl("/authenticateTheUser")
 						.permitAll())
+
 				.logout(logout -> logout.permitAll())
+
+				.exceptionHandling(exceptionHandling -> exceptionHandling.accessDeniedPage("/access-denied"))
 				.build();
 	}
 

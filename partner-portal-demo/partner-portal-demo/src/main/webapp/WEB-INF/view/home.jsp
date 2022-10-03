@@ -21,9 +21,8 @@
 	<p>
 		<a href="${pageContext.request.contextPath}/projects">go to Projects</a>
 	</p>
-	
 	<p>
-		<a href="${pageContext.request.contextPath}/systems">go to Systems</a>
+		<a href="${pageContext.request.contextPath}/admin/systems">go to Systems</a>
 	</p>
 	
 	<hr>
