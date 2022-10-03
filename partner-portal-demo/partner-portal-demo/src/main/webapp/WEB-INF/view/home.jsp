@@ -15,17 +15,22 @@
 	Welcome <security:authentication property="principal.username"/>, to the partner portal!
 	<br>
 	</p>
-	<hr>
 	
-	<!-- navigation sections  -->	
+	
+	<security:authorize access="hasRole('PARTNER')">
+	<hr>
 	<p>
 		<a href="${pageContext.request.contextPath}/projects">go to Projects</a>
 	</p>
+	</security:authorize>
+	<security:authorize access="hasRole('ADMIN')">
+	<hr>
 	<p>
 		<a href="${pageContext.request.contextPath}/admin/systems">go to Systems</a>
 	</p>
+	</security:authorize>
 	
-	<hr>
+	
 	
 	<!-- logout -->
 	<form:form action="${pageContext.request.contextPath}/logout" method="POST">
