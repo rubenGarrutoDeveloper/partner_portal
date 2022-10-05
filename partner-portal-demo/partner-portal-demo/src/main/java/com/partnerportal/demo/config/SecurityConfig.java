@@ -1,42 +1,34 @@
 package com.partnerportal.demo.config;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig
 {
+	// add a reference to our security data source
+
+	private DataSource securityDataSource;
+
+	@Autowired
+	public SecurityConfig(DataSource theSecurityDataSource)
+	{
+		securityDataSource = theSecurityDataSource;
+	}
 
 	@Bean
-	public InMemoryUserDetailsManager userDetailsManager()
+	public UserDetailsManager userDetailsManager()
 	{
-
-		UserDetails gabry = User.builder()
-				.username("gabry")
-				.password("{noop}password")
-				.roles("USER")
-				.build();
-
-		UserDetails matteo = User.builder()
-				.username("matteo")
-				.password("{noop}password")
-				.roles("USER", "PARTNER")
-				.build();
-
-		UserDetails ruben = User.builder()
-				.username("ruben")
-				.password("{noop}password")
-				.roles("USER", "ADMIN")
-				.build();
-
-		return new InMemoryUserDetailsManager(gabry, matteo, ruben);
+		return new JdbcUserDetailsManager(securityDataSource);
 	}
 
 	@Bean
