@@ -9,10 +9,10 @@ USE PARTNER_PORTAL;
 
 -- Creazione tabella utenti
 DROP TABLE IF EXISTS USERS;
-CREATE TABLE USERS 
+CREATE TABLE USERS
 (
   USERNAME VARCHAR(50) NOT NULL,
-  PASSWORD VARCHAR(50) NOT NULL,
+  PASSWORD VARCHAR(68) NOT NULL,
   ENABLED TINYINT(1) NOT NULL,
   PRIMARY KEY (USERNAME)
 ) ENGINE=INNODB DEFAULT CHARSET=LATIN1;
@@ -20,14 +20,14 @@ CREATE TABLE USERS
 -- Inserimento utenti
 INSERT INTO USERS
 VALUES 
-('gabry.pucci','{noop}password',1),
-('matteo.bonarriva','{noop}password',1),
-('ruben.garruto','{noop}password',1);
+('gabry.pucci','{bcrypt}$2a$10$ycC8YZOGwzGFrT37yGNbVuaZKqhLiZbU.dpPETpvx0W/4Gw3D3EjC',1),
+('matteo.bonarriva','{bcrypt}$2a$10$ycC8YZOGwzGFrT37yGNbVuaZKqhLiZbU.dpPETpvx0W/4Gw3D3EjC',1),
+('ruben.garruto','{bcrypt}$2a$10$ycC8YZOGwzGFrT37yGNbVuaZKqhLiZbU.dpPETpvx0W/4Gw3D3EjC',1);
 
 
 -- Creazione tabella dei ruoli
 DROP TABLE IF EXISTS AUTHORITIES;
-CREATE TABLE AUTHORITIES 
+CREATE TABLE AUTHORITIES
 (
   USERNAME VARCHAR(50) NOT NULL,
   AUTHORITY VARCHAR(50) NOT NULL,
