@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class NavigationController
 {
 	private final String admin = "admin";
+	private final String projectsSection = "projects-section";
 
 	@GetMapping("/")
 	public String goToHome()
@@ -14,13 +15,13 @@ public class NavigationController
 		return "home";
 	}
 
-	@GetMapping("/projects")
+	@GetMapping("/" + projectsSection + "/projects")
 	public String goToGestioneProgetti()
 	{
-		return "projects";
+		return projectsSection + "/projects";
 	}
 
-	@GetMapping("/admin/systems")
+	@GetMapping("/" + admin + "/systems")
 	public String goToSystems()
 	{
 		return admin + "/systems";

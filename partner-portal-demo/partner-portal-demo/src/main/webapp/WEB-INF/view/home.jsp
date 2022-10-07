@@ -20,7 +20,7 @@
 		<security:authorize access="hasRole('PARTNER')">
 		<hr>
 		<p>
-			<a href="${pageContext.request.contextPath}/projects">go to Projects</a>
+			<a href="${pageContext.request.contextPath}/projects-section/projects">go to Projects</a>
 		</p>
 		</security:authorize>
 		

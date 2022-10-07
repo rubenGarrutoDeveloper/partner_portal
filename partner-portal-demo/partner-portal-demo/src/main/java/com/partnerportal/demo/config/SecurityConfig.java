@@ -38,7 +38,7 @@ public class SecurityConfig
 		return http
 				.authorizeRequests(auth -> auth
 						.antMatchers("/").hasRole("USER")
-						.antMatchers("/projects/**").hasRole("PARTNER")
+						.antMatchers("/projects-section/**").hasRole("PARTNER")
 						.antMatchers("/admin/**").hasRole("ADMIN"))
 
 				.formLogin(formLogin -> formLogin

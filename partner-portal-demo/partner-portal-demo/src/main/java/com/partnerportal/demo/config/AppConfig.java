@@ -1,16 +1,21 @@
 package com.partnerportal.demo.config;
 
 import java.beans.PropertyVetoException;
+import java.util.Properties;
 import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -21,8 +26,9 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration
 @EnableWebMvc
+@EnableTransactionManagement
 @ComponentScan(basePackages = "com.partnerportal.demo")
-@PropertySource("classpath:jdbc.properties")
+@PropertySource("classpath:database.properties")
 public class AppConfig implements WebMvcConfigurer
 {
 
@@ -60,8 +66,8 @@ public class AppConfig implements WebMvcConfigurer
 
 		// create connection pool
 		ComboPooledDataSource securityDataSource = new ComboPooledDataSource();
-		// set the jdbc driver class
 
+		// set the jdbc driver class
 		try
 		{
 			securityDataSource.setDriverClass(env.getProperty("jdbc.driver"));
@@ -100,5 +106,44 @@ public class AppConfig implements WebMvcConfigurer
 		int intPropVal = Integer.parseInt(propVal);
 
 		return intPropVal;
+	}
+
+	@Bean
+	public LocalSessionFactoryBean sessionFactory()
+	{
+
+		// create session factorys
+		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+
+		// set the properties
+		sessionFactory.setDataSource(securityDataSource());
+		sessionFactory.setPackagesToScan(env.getProperty("hibernate.packagesToScan"));
+		sessionFactory.setHibernateProperties(getHibernateProperties());
+
+		return sessionFactory;
+	}
+
+	@Bean
+	@Autowired
+	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory)
+	{
+
+		// setup transaction manager based on session factory
+		HibernateTransactionManager txManager = new HibernateTransactionManager();
+		txManager.setSessionFactory(sessionFactory);
+
+		return txManager;
+	}
+
+	private Properties getHibernateProperties()
+	{
+
+		// set hibernate properties
+		Properties props = new Properties();
+
+		props.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
+		props.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+
+		return props;
 	}
 }
