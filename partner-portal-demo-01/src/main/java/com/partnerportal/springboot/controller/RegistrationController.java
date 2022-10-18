@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.partnerportal.demo.user.CrmUser;
 import com.partnerportal.springboot.entity.User;
 import com.partnerportal.springboot.service.UserService;
+import com.partnerportal.springboot.user.CrmUser;
 
 @Controller
 @RequestMapping("/register")

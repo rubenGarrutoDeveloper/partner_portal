@@ -2,8 +2,8 @@ package com.partnerportal.springboot.service;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-import com.partnerportal.demo.user.CrmUser;
 import com.partnerportal.springboot.entity.User;
+import com.partnerportal.springboot.user.CrmUser;
 
 public interface UserService extends UserDetailsService {
 

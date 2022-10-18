@@ -13,11 +13,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.partnerportal.demo.user.CrmUser;
 import com.partnerportal.springboot.dao.RoleDao;
 import com.partnerportal.springboot.dao.UserDao;
 import com.partnerportal.springboot.entity.Role;
 import com.partnerportal.springboot.entity.User;
+import com.partnerportal.springboot.user.CrmUser;
 
 @Service
 public class UserServiceImpl implements UserService {

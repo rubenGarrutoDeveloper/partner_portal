@@ -1,4 +1,4 @@
-package com.partnerportal.demo.user;
+package com.partnerportal.springboot.user;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
