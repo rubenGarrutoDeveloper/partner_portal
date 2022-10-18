@@ -1,4 +1,4 @@
-package com.partnerportal.springsecurity.demo.validation;
+package com.partnerportal.springboot.validation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

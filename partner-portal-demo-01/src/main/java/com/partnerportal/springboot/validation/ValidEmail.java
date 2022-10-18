@@ -1,4 +1,4 @@
-package com.partnerportal.springsecurity.demo.validation;
+package com.partnerportal.springboot.validation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

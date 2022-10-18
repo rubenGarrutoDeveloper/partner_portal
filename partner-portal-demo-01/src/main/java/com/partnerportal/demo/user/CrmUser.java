@@ -3,8 +3,8 @@ package com.partnerportal.demo.user;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.partnerportal.springsecurity.demo.validation.FieldMatch;
-import com.partnerportal.springsecurity.demo.validation.ValidEmail;
+import com.partnerportal.springboot.validation.FieldMatch;
+import com.partnerportal.springboot.validation.ValidEmail;
 
 @FieldMatch.List({
     @FieldMatch(first = "password", second = "matchingPassword", message = "The password fields must match")

@@ -1,4 +1,4 @@
-package com.partnerportal.springsecurity.demo.validation;
+package com.partnerportal.springboot.validation;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
