@@ -72,7 +72,7 @@ CREATE TABLE role (
 
 INSERT INTO role (name)
 VALUES 
-('ROLE_EMPLOYEE'),('ROLE_MANAGER'),('ROLE_ADMIN');
+('ROLE_USER'),('ROLE_PARTNER'),('ROLE_ADMIN');
 
 --
 -- Table structure for table users_roles

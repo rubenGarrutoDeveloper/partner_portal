@@ -47,7 +47,7 @@
 				<th>Last Name</th>
 				<th>Email</th>
 
-				<div sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
+				<div sec:authorize="hasAnyRole('ROLE_PARTNER', 'ROLE_ADMIN')">
 					<th>Action</th>
 				</div>					
 			</tr>
@@ -60,10 +60,10 @@
 				<td th:text="${tempEmployee.lastName}" />	
 				<td th:text="${tempEmployee.email}" />	
 
-				<div sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
+				<div sec:authorize="hasAnyRole('ROLE_PARTNER', 'ROLE_ADMIN')">
 				
 					<td>
-						<div sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
+						<div sec:authorize="hasAnyRole('ROLE_PARTNER', 'ROLE_ADMIN')">
 	
 							<!-- Add "update" button/link -->
 							<a th:href="@{/employees/showFormForUpdate(employeeId=${tempEmployee.id})}"

@@ -17,9 +17,9 @@ These are the same SQL scripts used in the course.
 +---------+----------+-----------------------------+
 | user id | password |            roles            |
 +---------+----------+-----------------------------+
-| john    | fun123   | ROLE_EMPLOYEE               |
-| mary    | fun123   | ROLE_EMPLOYEE, ROLE_MANAGER |
-| susan   | fun123   | ROLE_EMPLOYEE, ROLE_ADMIN   |
+| john    | fun123   | ROLE_USER               |
+| mary    | fun123   | ROLE_USER, ROLE_PARTNER |
+| susan   | fun123   | ROLE_USER, ROLE_ADMIN   |
 +---------+----------+-----------------------------+
 
 
@@ -218,10 +218,10 @@ These restrictions are currently in place with the code: DemoSecurityConfig.java
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests()
-			.antMatchers("/employees/showForm*").hasAnyRole("MANAGER", "ADMIN")
-			.antMatchers("/employees/save*").hasAnyRole("MANAGER", "ADMIN")
+			.antMatchers("/employees/showForm*").hasAnyRole("PARTNER", "ADMIN")
+			.antMatchers("/employees/save*").hasAnyRole("PARTNER", "ADMIN")
 			.antMatchers("/employees/delete").hasRole("ADMIN")
-			.antMatchers("/employees/**").hasRole("EMPLOYEE")
+			.antMatchers("/employees/**").hasRole(USER)
 			.antMatchers("/resources/**").permitAll()
 			.and()
 			.formLogin()
@@ -235,8 +235,8 @@ These restrictions are currently in place with the code: DemoSecurityConfig.java
 		
 	}
 
-We also, want to hide/display the links on the view page. For example, if the user has only the "EMPLOYEE" role, then we should only display links available for "EMPLOYEE" role.
-Links for "MANAGER" and "ADMIN" role should not be displayed for the "EMPLOYEE".
+We also, want to hide/display the links on the view page. For example, if the user has only the USER role, then we should only display links available for USER role.
+Links for "PARTNER" and "ADMIN" role should not be displayed for the USER.
 
 We can make use of Thymeleaf Security to handle this for us. 
 
@@ -256,7 +256,7 @@ Note the reference for xmlns:sec
 2. "Update" button
 Only display the "Update" button for users with role of MANAGER OR ADMIN
 
-					<div sec:authorize="hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')">
+					<div sec:authorize="hasAnyRole('ROLE_PARTNER', 'ROLE_ADMIN')">
 
 						<!-- Add "update" button/link -->
 						<a th:href="@{/employees/showFormForUpdate(employeeId=${tempEmployee.id})}"
@@ -296,9 +296,9 @@ TEST THE APPLICATION
 +---------+----------+-----------------------------+
 | user id | password |            roles            |
 +---------+----------+-----------------------------+
-| john    | fun123   | ROLE_EMPLOYEE               |
-| mary    | fun123   | ROLE_EMPLOYEE, ROLE_MANAGER |
-| susan   | fun123   | ROLE_EMPLOYEE, ROLE_ADMIN   |
+| john    | fun123   | ROLE_USER               |
+| mary    | fun123   | ROLE_USER, ROLE_PARTNER |
+| susan   | fun123   | ROLE_USER, ROLE_ADMIN   |
 +---------+----------+-----------------------------+
 
 4. Confirm that you can login and access data based on the roles.

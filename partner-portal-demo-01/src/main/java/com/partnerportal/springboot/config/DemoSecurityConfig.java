@@ -34,16 +34,19 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests()
 			
-			.antMatchers("/").hasAnyRole("EMPLOYEE", "MANAGER", "ADMIN")
+			.antMatchers("/").hasAnyRole("USER", "PARTNER", "ADMIN")
 			
-			.antMatchers("/leaders/**").hasRole("MANAGER")
+			.antMatchers("/projects/**").hasRole("PARTNER")
 			.antMatchers("/systems/**").hasRole("ADMIN")
 			
-			.antMatchers("/employees/showForm*").hasAnyRole("MANAGER", "ADMIN")
-			.antMatchers("/employees/save*").hasAnyRole("MANAGER", "ADMIN")
-			.antMatchers("/employees/delete").hasRole("ADMIN")
-			.antMatchers("/employees/**").hasRole("EMPLOYEE")
+			// Only admin and partner can add/save other employees
+			.antMatchers("/employees/showForm*").hasAnyRole("PARTNER", "ADMIN")
+			.antMatchers("/employees/save*").hasAnyRole("PARTNER", "ADMIN")
 			
+			// Only admin delete other employees
+			.antMatchers("/employees/delete").hasRole("ADMIN")
+			
+			.antMatchers("/employees/**").hasRole("USER")
 			.antMatchers("/resources/**").permitAll()
 			.and()
 			.formLogin()
