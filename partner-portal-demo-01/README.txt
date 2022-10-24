@@ -225,7 +225,7 @@ These restrictions are currently in place with the code: DemoSecurityConfig.java
 			.antMatchers("/resources/**").permitAll()
 			.and()
 			.formLogin()
-				.loginPage("/showMyLoginPage")
+				.loginPage("/login")
 				.loginProcessingUrl("/authenticateTheUser")
 				.permitAll()
 			.and()
