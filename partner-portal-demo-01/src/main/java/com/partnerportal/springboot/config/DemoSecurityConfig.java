@@ -50,7 +50,7 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/resources/**").permitAll()
 			.and()
 			.formLogin()
-				.loginPage("/showMyLoginPage")
+				.loginPage("/login")
 				.loginProcessingUrl("/authenticateTheUser")
 				.successHandler(customAuthenticationSuccessHandler)
 				.permitAll()
