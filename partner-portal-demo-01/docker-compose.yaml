@@ -1,0 +1,39 @@
+version: '3'
+services:
+  pp-mysql:
+    container_name: pp-mysql
+    image: mysql/mysql-server:5.7
+    volumes:
+      - ./db:/var/lib/pp-mysql
+
+    environment:
+      - MYSQL_DATABASE=partner-portal
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_ROOT_USER=root
+      - MYSQL_ROOT_PASSWORD=password
+    ports:
+      - "3307:3306"
+
+  pp-portal:
+    container_name: pp-portal
+    image: pp-portal
+    tty: true
+    build: .
+    working_dir: /partner-portal
+    volumes:
+      - ./:/partner-portal
+      - ~/.m2:/root/.m2
+    ports:
+      - 9090
+    expose:
+      - "9090"
+    command: mvn clean spring-boot:run
+    depends_on:
+      - pp-mysql
+    environment:
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=password
+      - DATABASE_NAME=treadstone
+      - SPRING_DATASOURCE_URL=jdbc:mysql://pp-mysql:3306/partner_portal?useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=password

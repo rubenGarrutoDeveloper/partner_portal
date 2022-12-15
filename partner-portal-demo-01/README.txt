@@ -305,3 +305,12 @@ TEST THE APPLICATION
 
 Congratulations! You have an app that uses Spring Boot, Spring Security (JDBC), Thymeleaf, Spring Data JPA
  					
+ 					
+ 					
+DOCKER
+======
+## Build container
+docker build -t partner-portal .
+
+## Run the container
+docker run -p 9090:9090 partner-portal
