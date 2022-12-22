@@ -24,7 +24,8 @@ INSERT INTO employee VALUES
 --
 -- Table structure for table user
 --
-
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS authorities;
 DROP TABLE IF EXISTS user;
 
 CREATE TABLE user (
@@ -44,14 +45,14 @@ CREATE TABLE user (
 --
 -- A generation tool is avail at: http://www.luv2code.com/generate-bcrypt-password
 --
--- Default passwords here are: fun123
+-- Default passwords here are: password
 --
 
 INSERT INTO user (username,password,first_name,last_name,email)
 VALUES 
-('john','$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K','John','Doe','john@luv2code.com'),
-('mary','$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K','Mary','Public','mary@luv2code.com'),
-('susan','$2a$04$eFytJDGtjbThXa80FyOOBuFdK2IwjyWefYkMpiBEFlpBwDH.5PM0K','Susan','Adams','susan@luv2code.com');
+('mario.rossi','$2a$10$vfKc4NYxiitYGXjXUySj1uEorw2OK/B/nC/crMqau2ljVYzZiju22','Mario','Rossi','mario@mail.com'),
+('luigi.verdi','$2a$10$vfKc4NYxiitYGXjXUySj1uEorw2OK/B/nC/crMqau2ljVYzZiju22','Luigi','Verdi','luigi@mail.com'),
+('ruben.garruto','$2a$10$vfKc4NYxiitYGXjXUySj1uEorw2OK/B/nC/crMqau2ljVYzZiju22','Ruben','Garruto','ruben@mail.com');
 
 
 --
