@@ -7,12 +7,12 @@ services:
       - ./db:/var/lib/pp-mysql
 
     environment:
-      - MYSQL_DATABASE=partner-portal
       - MYSQL_ROOT_HOST=%
-      - MYSQL_ROOT_USER=PARTNER_PORTAL
-      - MYSQL_ROOT_PASSWORD=PARTNER_PORTAL
+      - MYSQL_ROOT_USER=root
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_TCP_PORT=3307
     ports:
-      - "3307:3306"
+      - "3307:3307"
 
   pp-portal:
     container_name: pp-portal
@@ -24,16 +24,13 @@ services:
       - ./:/partner-portal
       - ~/.m2:/root/.m2
     ports:
-      - 9090
-    expose:
-      - "9090"
+      - "9090:9090"
     command: mvn clean spring-boot:run
     depends_on:
       - pp-mysql
     environment:
-      - DATABASE_USER=PARTNER_PORTAL
-      - DATABASE_PASSWORD=PARTNER_PORTAL
-      - DATABASE_NAME=partner-portal
-      - SPRING_DATASOURCE_URL=jdbc:mysql://pp-mysql:3306/partner_portal?useSSL=false&serverTimezone=UTC&createDatabaseIfNotExist=true
-      - SPRING_DATASOURCE_USERNAME=PARTNER_PORTAL
-      - SPRING_DATASOURCE_PASSWORD=PARTNER_PORTAL
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=password
+      - SPRING_DATASOURCE_URL=jdbc:mysql://pp-mysql:3307/partner_portal?useSSL=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=password
