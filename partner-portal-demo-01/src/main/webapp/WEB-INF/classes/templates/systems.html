@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: html_head" />
+
+<body>
+	<div th:replace="fragments :: menu"></div>
+
+	<h2 class="container">Admin Home Page</h2>
+
+	<hr>
+
+	<div class="container">
+		<a th:href="@{/register/showRegistrationForm}" class="btn btn-primary"
+			role="button" aria-pressed="true">Register New User</a>
+	</div>
+
+	<div th:replace="fragments :: footer"></div>
+
+</body>
+
+
+
+</html>
+
+
+
+
+
+
+
+
+
