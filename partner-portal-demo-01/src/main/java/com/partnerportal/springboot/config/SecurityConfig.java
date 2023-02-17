@@ -14,73 +14,71 @@ import com.partnerportal.springboot.service.UserService;
 
 @Configuration
 @EnableWebSecurity
-public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter
+{
 
 	// add a reference to our user service
-    @Autowired
-    private UserService userService;
-	
-    @Autowired
-    private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
-    
-   @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider());
-    }
-	
+	@Autowired
+	private UserService userService;
+
+	@Autowired
+	private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 
 	@Override
-	protected void configure(HttpSecurity http) throws Exception {
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception
+	{
+		auth.authenticationProvider(authenticationProvider());
+	}
+
+	@Override
+	protected void configure(HttpSecurity http) throws Exception
+	{
 
 		http.authorizeRequests()
-			
-			.antMatchers("/").hasAnyRole("USER", "PARTNER", "ADMIN")
-			
-			.antMatchers("/projects/**").hasRole("PARTNER")
-			.antMatchers("/systems/**").hasRole("ADMIN")
-			
-			// Only admin and partner can add/save other employees
-			.antMatchers("/employees/showForm*").hasAnyRole("PARTNER", "ADMIN")
-			.antMatchers("/employees/save*").hasAnyRole("PARTNER", "ADMIN")
-			
-			// Only admin delete other employees
-			.antMatchers("/employees/delete").hasRole("ADMIN")
-			
-			.antMatchers("/employees/**").hasRole("USER")
-			.antMatchers("/resources/**").permitAll()
-			.and()
-			.formLogin()
-				.loginPage("/login")
+
+				.antMatchers("/").hasAnyRole("USER", "PARTNER", "ADMIN")
+
+				.antMatchers("/projects/**").hasRole("PARTNER")
+				.antMatchers("/systems/**").hasRole("ADMIN")
+
+				// Only admin and partner can add/save other employees
+				.antMatchers("/employees/showForm*").hasAnyRole("PARTNER", "ADMIN")
+				.antMatchers("/employees/save*").hasAnyRole("PARTNER", "ADMIN")
+
+				// Only admin delete other employees
+				.antMatchers("/employees/delete").hasRole("ADMIN")
+
+				.antMatchers("/employees/**").hasRole("USER")
+				.antMatchers("/resources/**").permitAll()
+				.and()
+				.formLogin()
+				.loginPage("/public-page")
 				.loginProcessingUrl("/authenticateTheUser")
 				.successHandler(customAuthenticationSuccessHandler)
 				.permitAll()
-			.and()
-			.logout().permitAll()
-			.and()
-			.exceptionHandling().accessDeniedPage("/access-denied");
-		
+				.and()
+				.logout().permitAll()
+				.and()
+				.exceptionHandling().accessDeniedPage("/access-denied");
+
 	}
-	
+
 	//beans
 	//bcrypt bean definition
 	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
+	public BCryptPasswordEncoder passwordEncoder()
+	{
 		return new BCryptPasswordEncoder();
 	}
 
 	//authenticationProvider bean definition
 	@Bean
-	public DaoAuthenticationProvider authenticationProvider() {
+	public DaoAuthenticationProvider authenticationProvider()
+	{
 		DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
 		auth.setUserDetailsService(userService); //set the custom user details service
 		auth.setPasswordEncoder(passwordEncoder()); //set the password encoder - bcrypt
 		return auth;
 	}
-		
+
 }
-
-
-
-
-
-

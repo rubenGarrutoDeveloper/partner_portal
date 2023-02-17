@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: Ruben Garruto
+Build-Jdk: 17.0.5
+Implementation-Title: partner-portal-demo-01
+Implementation-Version: 1.0.0
+Implementation-Vendor-Id: com.partnerportal.springboot
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/partner-portal-demo-01
+Created-By: Maven Integration for Eclipse
+
