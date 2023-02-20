@@ -2,11 +2,12 @@ package com.partnerportal.springboot.service;
 
 import java.util.List;
 
+import com.partnerportal.springboot.bean.ProjectBean;
 import com.partnerportal.springboot.entity.Project;
 
 public interface ProjectServiceInterface
 {
-	public List<Project> findAllProjects(); // Find all projects
+	public List<ProjectBean> findAllProjects(); // Find all projects
 
 	public Project findById(int idProject); // Find a project based on ID
 

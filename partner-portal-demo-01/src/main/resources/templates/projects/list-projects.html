@@ -13,6 +13,8 @@
 
 		<h3>All Projects</h3>
 		<hr>
+		
+		 <p>The number of projects is: <span th:text="${projects.size()}"></span></p>
 
 	<!-- TABLE PROJECTS -->
 		<table class="table table-bordered table-striped">
@@ -21,6 +23,7 @@
 					<th>ID</th>
 					<th>Title</th>
 					<th>Description</th>
+					<th>State</th>
 				</tr>
 			</thead>
 
@@ -29,6 +32,7 @@
 					<td th:text="${project.idProject}" />
 					<td th:text="${project.title}" />
 					<td th:text="${project.descProject}" />
+					<td th:text="${project.idState}" />
 				</tr>
 			</tbody>
 		</table>

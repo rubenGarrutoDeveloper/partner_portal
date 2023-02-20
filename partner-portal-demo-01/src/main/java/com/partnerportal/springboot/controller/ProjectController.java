@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.partnerportal.springboot.entity.Project;
+import com.partnerportal.springboot.bean.ProjectBean;
 import com.partnerportal.springboot.service.ProjectServiceImpl;
 
 @Controller
@@ -27,7 +27,7 @@ public class ProjectController
 	@GetMapping("/list")
 	public String getAllProjects(Model model)
 	{
-		List<Project> projects = projectService.findAllProjects();
+		List<ProjectBean> projects = projectService.findAllProjects();
 		model.addAttribute("projects", projects);
 
 		return "/projects/list-projects";

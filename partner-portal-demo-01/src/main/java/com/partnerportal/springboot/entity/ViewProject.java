@@ -2,17 +2,14 @@ package com.partnerportal.springboot.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "project")
-public class Project
+@Table(name = "view_project")
+public class ViewProject
 {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idProject")
 	private int idProject;
 

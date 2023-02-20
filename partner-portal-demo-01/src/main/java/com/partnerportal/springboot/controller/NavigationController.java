@@ -9,13 +9,10 @@ public class NavigationController
 {
 
 	// create a mapping for "/hello"
-
 	@GetMapping("/hello")
 	public String sayHello(Model theModel)
 	{
-
 		theModel.addAttribute("theDate", new java.util.Date());
-
 		return "helloworld";
 	}
 

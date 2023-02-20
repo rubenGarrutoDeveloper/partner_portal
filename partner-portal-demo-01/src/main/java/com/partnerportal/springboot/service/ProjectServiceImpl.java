@@ -6,24 +6,30 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.partnerportal.springboot.bean.ProjectBean;
 import com.partnerportal.springboot.dao.ProjectDao;
+import com.partnerportal.springboot.dao.ViewProjectDao;
 import com.partnerportal.springboot.entity.Project;
+import com.partnerportal.springboot.utility.EntityConverter;
 
 @Service
 public class ProjectServiceImpl implements ProjectServiceInterface
 {
 	private ProjectDao projectDao;
 
+	private ViewProjectDao viewProjectDao;
+
 	@Autowired
-	public ProjectServiceImpl(ProjectDao projectDao)
+	public ProjectServiceImpl(ProjectDao projectDao, ViewProjectDao viewProjectDao)
 	{
 		this.projectDao = projectDao;
+		this.viewProjectDao = viewProjectDao;
 	}
 
 	@Override
-	public List<Project> findAllProjects()
+	public List<ProjectBean> findAllProjects()
 	{
-		return projectDao.findAll();
+		return EntityConverter.generateProjectBeanList(viewProjectDao.findAll());
 	}
 
 	@Override
