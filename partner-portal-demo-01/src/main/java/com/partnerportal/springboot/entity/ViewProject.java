@@ -1,8 +1,12 @@
 package com.partnerportal.springboot.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,17 +23,31 @@ public class ViewProject
 	@Column(name = "descProject", nullable = false)
 	private String descProject;
 
-	@Column(name = "idState", nullable = false)
-	private int idState;
+	@ManyToOne
+	@JoinColumn(name = "idStatus")
+	private AnagStatus anagStatus;
 
-	public int getIdState()
+	@Column(name = "dateLastState")
+	private Date dateLastState;
+
+	public Date getDateLastState()
 	{
-		return idState;
+		return dateLastState;
 	}
 
-	public void setIdState(int idState)
+	public void setDateLastState(Date dateLastState)
 	{
-		this.idState = idState;
+		this.dateLastState = dateLastState;
+	}
+
+	public int getIdStatus()
+	{
+		return anagStatus.getIdStatus();
+	}
+
+	public void setIdStatus(int idStatus)
+	{
+		this.anagStatus.setIdStatus(idStatus);
 	}
 
 	public int getIdProject()

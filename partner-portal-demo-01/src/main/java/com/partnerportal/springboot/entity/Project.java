@@ -22,19 +22,6 @@ public class Project
 	@Column(name = "descProject", nullable = false)
 	private String descProject;
 
-	@Column(name = "idState", nullable = false)
-	private int idState;
-
-	public int getIdState()
-	{
-		return idState;
-	}
-
-	public void setIdState(int idState)
-	{
-		this.idState = idState;
-	}
-
 	public int getIdProject()
 	{
 		return idProject;

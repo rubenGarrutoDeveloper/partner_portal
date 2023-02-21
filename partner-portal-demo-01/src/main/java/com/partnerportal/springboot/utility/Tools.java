@@ -19,5 +19,4 @@ public class Tools
 	{
 		return map == null || map.isEmpty();
 	}
-
 }

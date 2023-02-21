@@ -1,11 +1,24 @@
 package com.partnerportal.springboot.bean;
 
+import java.util.Date;
+
 public class ProjectBean
 {
 	private int idProject;
 	private String title;
 	private String descProject;
-	private int idState;
+	private int idStatus;
+	private Date dateLastState;
+
+	public Date getDateLastState()
+	{
+		return dateLastState;
+	}
+
+	public void setDateLastState(Date dateLastState)
+	{
+		this.dateLastState = dateLastState;
+	}
 
 	public int getIdProject()
 	{
@@ -37,13 +50,13 @@ public class ProjectBean
 		this.descProject = descProject;
 	}
 
-	public int getIdState()
+	public int getIdStatus()
 	{
-		return idState;
+		return idStatus;
 	}
 
-	public void setIdState(int idState)
+	public void setIdStatus(int idStatus)
 	{
-		this.idState = idState;
+		this.idStatus = idStatus;
 	}
 }

@@ -24,6 +24,7 @@
 					<th>Title</th>
 					<th>Description</th>
 					<th>State</th>
+					<th>Date</th>
 				</tr>
 			</thead>
 
@@ -32,7 +33,8 @@
 					<td th:text="${project.idProject}" />
 					<td th:text="${project.title}" />
 					<td th:text="${project.descProject}" />
-					<td th:text="${project.idState}" />
+					<td th:text="${@projectController.getDescState(project.idStatus)}"/>
+					<td th:text="${project.dateLastState}" />
 				</tr>
 			</tbody>
 		</table>
