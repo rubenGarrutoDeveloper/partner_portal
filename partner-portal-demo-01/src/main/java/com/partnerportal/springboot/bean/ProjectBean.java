@@ -9,6 +9,9 @@ public class ProjectBean
 	private String descProject;
 	private int idStatus;
 	private Date dateLastState;
+	private String codeProject;
+	private Integer createdBy;
+	private String nameCreatedBy;
 
 	public Date getDateLastState()
 	{
@@ -58,5 +61,35 @@ public class ProjectBean
 	public void setIdStatus(int idStatus)
 	{
 		this.idStatus = idStatus;
+	}
+
+	public String getCodeProject()
+	{
+		return codeProject;
+	}
+
+	public void setCodeProject(String codeProject)
+	{
+		this.codeProject = codeProject;
+	}
+
+	public Integer getCreatedBy()
+	{
+		return createdBy;
+	}
+
+	public void setCreatedBy(Integer createdBy)
+	{
+		this.createdBy = createdBy;
+	}
+
+	public String getNameCreatedBy()
+	{
+		return nameCreatedBy;
+	}
+
+	public void setNameCreatedBy(String nameCreatedBy)
+	{
+		this.nameCreatedBy = nameCreatedBy;
 	}
 }

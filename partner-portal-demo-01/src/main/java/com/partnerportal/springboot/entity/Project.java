@@ -22,6 +22,32 @@ public class Project
 	@Column(name = "descProject", nullable = false)
 	private String descProject;
 
+	@Column(name = "codeProject", nullable = false, length = 12, unique = true)
+	private String codeProject;
+
+	@Column(name = "createdBy", nullable = false)
+	private Integer createdBy;
+
+	public String getCodeProject()
+	{
+		return codeProject;
+	}
+
+	public void setCodeProject(String codeProject)
+	{
+		this.codeProject = codeProject;
+	}
+
+	public Integer getCreatedBy()
+	{
+		return createdBy;
+	}
+
+	public void setCreatedBy(Integer createdBy)
+	{
+		this.createdBy = createdBy;
+	}
+
 	public int getIdProject()
 	{
 		return idProject;

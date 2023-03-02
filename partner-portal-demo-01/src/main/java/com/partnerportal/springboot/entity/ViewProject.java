@@ -23,6 +23,15 @@ public class ViewProject
 	@Column(name = "descProject", nullable = false)
 	private String descProject;
 
+	@Column(name = "codeProject")
+	private String codeProject;
+
+	@Column(name = "createdBy")
+	private Integer createdBy;
+
+	@Column(name = "nameCreatedBy")
+	private String nameCreatedBy;
+
 	@ManyToOne
 	@JoinColumn(name = "idStatus")
 	private AnagStatus anagStatus;
@@ -78,6 +87,36 @@ public class ViewProject
 	public void setDescProject(String descProject)
 	{
 		this.descProject = descProject;
+	}
+
+	public String getCodeProject()
+	{
+		return codeProject;
+	}
+
+	public void setCodeProject(String codeProject)
+	{
+		this.codeProject = codeProject;
+	}
+
+	public Integer getCreatedBy()
+	{
+		return createdBy;
+	}
+
+	public void setCreatedBy(Integer createdBy)
+	{
+		this.createdBy = createdBy;
+	}
+
+	public String getNameCreatedBy()
+	{
+		return nameCreatedBy;
+	}
+
+	public void setNameCreatedBy(String nameCreatedBy)
+	{
+		this.nameCreatedBy = nameCreatedBy;
 	}
 
 }

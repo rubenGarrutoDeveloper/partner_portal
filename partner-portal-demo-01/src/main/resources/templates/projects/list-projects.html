@@ -24,16 +24,18 @@
 					<th>Title</th>
 					<th>Description</th>
 					<th>State</th>
+					<th>Created by</th>
 					<th>Date</th>
 				</tr>
 			</thead>
 
 			<tbody>
 				<tr th:each="project : ${projects}">
-					<td th:text="${project.idProject}" />
+					<td th:text="${project.codeProject}" />
 					<td th:text="${project.title}" />
 					<td th:text="${project.descProject}" />
 					<td th:text="${@projectController.getDescState(project.idStatus)}"/>
+					<td th:text="${project.nameCreatedBy}" />
 					<td th:text="${project.dateLastState}" />
 				</tr>
 			</tbody>

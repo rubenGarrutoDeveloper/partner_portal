@@ -28,9 +28,12 @@ public class EntityConverter
 			return bean;
 
 		bean.setIdProject(entity.getIdProject());
+		bean.setCodeProject(entity.getCodeProject());
 		bean.setTitle(entity.getTitle());
 		bean.setDescProject(entity.getDescProject());
 		bean.setIdStatus(entity.getIdStatus());
+		bean.setCreatedBy(entity.getCreatedBy());
+		bean.setNameCreatedBy(entity.getNameCreatedBy());
 		bean.setDateLastState(entity.getDateLastState());
 
 		return bean;

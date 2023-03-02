@@ -29,7 +29,7 @@ public class ProjectServiceImpl implements ProjectServiceInterface
 	@Override
 	public List<ProjectBean> findAllProjects()
 	{
-		return EntityConverter.generateProjectBeanList(viewProjectDao.findAll());
+		return EntityConverter.generateProjectBeanList(viewProjectDao.findAllByOrderByDateLastStateDesc());
 	}
 
 	@Override
