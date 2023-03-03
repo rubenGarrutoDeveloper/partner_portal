@@ -11,7 +11,7 @@ public interface ProjectServiceInterface
 
 	public Project findById(int idProject); // Find a project based on ID
 
-	public List<Project> searchBy(String title); // Find a project based on title
+	public List<ProjectBean> searchByProjectName(String title); // Find a project based on title
 
 	public void save(Project newProject); // Save a project
 

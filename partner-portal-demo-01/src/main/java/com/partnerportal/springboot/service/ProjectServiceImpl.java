@@ -47,6 +47,12 @@ public class ProjectServiceImpl implements ProjectServiceInterface
 	}
 
 	@Override
+	public List<ProjectBean> searchByProjectName(String title)
+	{
+		return EntityConverter.generateProjectBeanList(viewProjectDao.findByTitleContaining(title));
+	}
+
+	@Override
 	public void save(Project newProject)
 	{
 		// TODO Auto-generated method stub
@@ -57,12 +63,4 @@ public class ProjectServiceImpl implements ProjectServiceInterface
 	{
 		// TODO Auto-generated method stub
 	}
-
-	@Override
-	public List<Project> searchBy(String title)
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

@@ -13,19 +13,28 @@
 
 		<h3>All Projects</h3>
 		<hr>
-		
-		 <p>The number of projects is: <span th:text="${projects.size()}"></span></p>
 
-	<!-- TABLE PROJECTS -->
+		<p>
+			The number of projects is: <span th:text="${projects.size()}"></span>
+		</p>
+
+		<!-- TABLE PROJECTS -->
 		<table class="table table-bordered table-striped">
 			<thead class="thead-dark">
 				<tr>
 					<th>ID</th>
-					<th>Title</th>
+					<th>Title
+						<form th:action="@{/projects/searchByProjectName}" class="form-inline">
+							<input id="search-input" class="form-control ml-5 mr-sm-2 mb-3"
+								type="search" name="projectName"
+								placeholder="Search by name project" />
+						</form>
+					</th>
 					<th>Description</th>
 					<th>State</th>
 					<th>Created by</th>
 					<th>Date</th>
+					<th>Partners</th>
 				</tr>
 			</thead>
 
@@ -34,14 +43,24 @@
 					<td th:text="${project.codeProject}" />
 					<td th:text="${project.title}" />
 					<td th:text="${project.descProject}" />
-					<td th:text="${@projectController.getDescState(project.idStatus)}"/>
+					<td th:text="${@projectController.getDescState(project.idStatus)}" />
 					<td th:text="${project.nameCreatedBy}" />
 					<td th:text="${project.dateLastState}" />
+					<td>
+						<button type="button" class="btn btn-sm btn-info"
+							onclick="showPopup()">
+							<i class="fa fa-search"></i>
+						</button>
+					</td>
+
 				</tr>
 			</tbody>
 		</table>
 
 	</div>
+
+
+
 	<div th:replace="fragments :: footer"></div>
 </body>
 </html>
