@@ -46,9 +46,8 @@ public class ProjectController
 	@GetMapping("/searchByProjectName")
 	public String searchByProjectName(@RequestParam("projectName") String projectName, Model theModel)
 	{
-		List<ProjectBean> projectsList = projectService.searchBy(projectName);
+		List<ProjectBean> projectsList = projectService.searchByProjectName(projectName);
 		theModel.addAttribute("projects", projectsList);
 		return "/projects/list-projects";
-
 	}
 }

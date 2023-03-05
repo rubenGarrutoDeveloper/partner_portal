@@ -15,107 +15,93 @@ import com.partnerportal.springboot.service.EmployeeService;
 
 @Controller
 @RequestMapping("/employees")
-public class EmployeeController {
+public class EmployeeController
+{
 
 	private EmployeeService employeeService;
-	
-	public EmployeeController(EmployeeService theEmployeeService) {
+
+	public EmployeeController(EmployeeService theEmployeeService)
+	{
 		employeeService = theEmployeeService;
 	}
-	
+
 	// add mapping for "/list"
 
 	@GetMapping("/list")
-	public String listEmployees(Model theModel) {
-		
+	public String listEmployees(Model theModel)
+	{
+
 		// get employees from db
 		List<Employee> theEmployees = employeeService.findAll();
-		
+
 		// add to the spring model
 		theModel.addAttribute("employees", theEmployees);
-		
+
 		return "/employees/list-employees";
 	}
-	
+
 	@GetMapping("/showFormForAdd")
-	public String showFormForAdd(Model theModel) {
-		
+	public String showFormForAdd(Model theModel)
+	{
+
 		// create model attribute to bind form data
 		Employee theEmployee = new Employee();
-		
+
 		theModel.addAttribute("employee", theEmployee);
-		
+
 		return "/employees/employee-form";
 	}
 
 	@GetMapping("/showFormForUpdate")
-	public String showFormForUpdate(@RequestParam("employeeId") int theId,
-									Model theModel) {
-		
+	public String showFormForUpdate(@RequestParam("employeeId") int theId, Model theModel)
+	{
+
 		// get the employee from the service
 		Employee theEmployee = employeeService.findById(theId);
-		
+
 		// set employee as a model attribute to pre-populate the form
 		theModel.addAttribute("employee", theEmployee);
-		
+
 		// send over to our form
-		return "/employees/employee-form";			
+		return "/employees/employee-form";
 	}
-	
-	
+
 	@PostMapping("/save")
-	public String saveEmployee(@ModelAttribute("employee") Employee theEmployee) {
-		
+	public String saveEmployee(@ModelAttribute("employee") Employee theEmployee)
+	{
+
 		// save the employee
 		employeeService.save(theEmployee);
-		
+
 		// use a redirect to prevent duplicate submissions
 		return "redirect:/employees/list";
 	}
-	
-	
+
 	@GetMapping("/delete")
-	public String delete(@RequestParam("employeeId") int theId) {
-		
+	public String delete(@RequestParam("employeeId") int theId)
+	{
+
 		// delete the employee
 		employeeService.deleteById(theId);
-		
+
 		// redirect to /employees/list
 		return "redirect:/employees/list";
-		
+
 	}
-	
+
 	@GetMapping("/search")
-	public String delete(@RequestParam("employeeName") String theName,
-						 Model theModel) {
-		
-		// delete the employee
+	public String search(@RequestParam("employeeName") String theName, Model theModel)
+	{
+
+		// search the employee
 		List<Employee> theEmployees = employeeService.searchBy(theName);
-		
+
 		// add to the spring model
 		theModel.addAttribute("employees", theEmployees);
-		
+
 		// send to /employees/list
 		return "/employees/list-employees";
-		
+
 	}
-	
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

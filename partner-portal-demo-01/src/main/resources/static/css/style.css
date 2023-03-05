@@ -4,7 +4,6 @@
 
 /* Color setup */
 :root{
-	
 	--primary: #3155e7;
 	--primary-dark: #2045d6;
 	--black: #010101;
@@ -17,7 +16,6 @@
 body{
 	font-family: 'Plus Jakarta Sans', sans-serif;
 	background-color: var(--body);
-	
 }
 
 
@@ -57,3 +55,47 @@ body {
 		height: auto;
 	}
 }
+
+  .big-center-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+  }
+  
+.btn-login {
+  background-color: #007bff;
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 30px;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-login:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: -1;
+  transition: all 0.3s ease-out;
+}
+
+.btn-login:hover:before {
+  width: 100%;
+}
+
+.btn-login:hover {
+  background-color: #fff;
+  color: #007bff;
+  transition: all 0.3s ease-in-out;
+}
+

@@ -22,13 +22,6 @@ public class NavigationController
 		return "home";
 	}
 
-	// add request mapping for /projects
-	@GetMapping("/projects")
-	public String showProjects()
-	{
-		return "projects";
-	}
-
 	// add request mapping for /systems
 	@GetMapping("/systems")
 	public String showSystems()
