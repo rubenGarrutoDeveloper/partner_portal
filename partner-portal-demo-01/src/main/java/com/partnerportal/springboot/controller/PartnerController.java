@@ -28,7 +28,7 @@ public class PartnerController
 	@GetMapping("/partners-associated")
 	public String getPartnersByIdProject(@RequestParam("idProject") int idProject, Model model)
 	{
-		List<PartnerBean> partners = partnerServiceImpl.findByProjectId(idProject);
+		List<PartnerBean> partners = partnerServiceImpl.findPartnersAssociatedToProject(idProject);
 		model.addAttribute("partners", partners);
 		return "/partners/list-partners";
 	}

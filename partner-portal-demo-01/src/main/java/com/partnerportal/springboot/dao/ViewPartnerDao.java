@@ -11,5 +11,5 @@ import com.partnerportal.springboot.entity.ViewPartner;
 public interface ViewPartnerDao extends JpaRepository<ViewPartner, Integer>
 {
 	@Query("SELECT vp FROM ViewPartner vp WHERE vp.idProject = :idProject")
-	public List<ViewPartner> findByProjectId(@Param("idProject") int idProject);
+	public List<ViewPartner> findPartnersAssociatedToProject(@Param("idProject") int idProject);
 }
