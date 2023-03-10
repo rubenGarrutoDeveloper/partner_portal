@@ -1,16 +1,28 @@
 package com.partnerportal.springboot.entity;
 
-import javax.persistence.*;
 import java.util.Collection;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User
+{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Long id;
+	private int id;
 
 	@Column(name = "username")
 	private String userName;
@@ -28,15 +40,14 @@ public class User {
 	private String email;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "users_roles", 
-	joinColumns = @JoinColumn(name = "user_id"), 
-	inverseJoinColumns = @JoinColumn(name = "role_id"))
+	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Collection<Role> roles;
 
-	public User() {
-	}
+	public User()
+	{}
 
-	public User(String userName, String password, String firstName, String lastName, String email) {
+	public User(String userName, String password, String firstName, String lastName, String email)
+	{
 		this.userName = userName;
 		this.password = password;
 		this.firstName = firstName;
@@ -45,7 +56,8 @@ public class User {
 	}
 
 	public User(String userName, String password, String firstName, String lastName, String email,
-			Collection<Role> roles) {
+			Collection<Role> roles)
+	{
 		this.userName = userName;
 		this.password = password;
 		this.firstName = firstName;
@@ -54,66 +66,80 @@ public class User {
 		this.roles = roles;
 	}
 
-	public Long getId() {
+	public int getId()
+	{
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id)
+	{
 		this.id = id;
 	}
 
-	public String getUserName() {
+	public String getUserName()
+	{
 		return userName;
 	}
 
-	public void setUserName(String userName) {
+	public void setUserName(String userName)
+	{
 		this.userName = userName;
 	}
 
-	public String getPassword() {
+	public String getPassword()
+	{
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(String password)
+	{
 		this.password = password;
 	}
 
-	public String getFirstName() {
+	public String getFirstName()
+	{
 		return firstName;
 	}
 
-	public void setFirstName(String firstName) {
+	public void setFirstName(String firstName)
+	{
 		this.firstName = firstName;
 	}
 
-	public String getLastName() {
+	public String getLastName()
+	{
 		return lastName;
 	}
 
-	public void setLastName(String lastName) {
+	public void setLastName(String lastName)
+	{
 		this.lastName = lastName;
 	}
 
-	public String getEmail() {
+	public String getEmail()
+	{
 		return email;
 	}
 
-	public void setEmail(String email) {
+	public void setEmail(String email)
+	{
 		this.email = email;
 	}
 
-	public Collection<Role> getRoles() {
+	public Collection<Role> getRoles()
+	{
 		return roles;
 	}
 
-	public void setRoles(Collection<Role> roles) {
+	public void setRoles(Collection<Role> roles)
+	{
 		this.roles = roles;
 	}
 
 	@Override
-	public String toString() {
-		return "User{" + "id=" + id + ", userName='" + userName + '\'' + ", password='" + "*********" + '\''
-				+ ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + ", email='" + email + '\''
-				+ ", roles=" + roles + '}';
+	public String toString()
+	{
+		return "User{" + "id=" + id + ", userName='" + userName + '\'' + ", password='" + "*********" + '\'' + ", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' + ", email='" + email + '\'' + ", roles=" + roles + '}';
 	}
 }

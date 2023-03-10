@@ -6,5 +6,4 @@ import com.partnerportal.springboot.entity.Project;
 
 public interface ProjectDao extends JpaRepository<Project, Integer>
 {
-	public Project findByTitle(String title);
 }

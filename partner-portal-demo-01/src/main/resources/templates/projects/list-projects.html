@@ -3,7 +3,6 @@
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head th:replace="fragments :: html_head">
-
 </head>
 
 <body>
@@ -17,6 +16,9 @@
 		<p>
 			The number of projects is: <span th:text="${projects.size()}"></span>
 		</p>
+		
+		<a th:href="@{/projects/showFormForAdd}"
+			class="btn btn-primary btn-sm mr-5 mb-3" sec:authorize="!isAnonymous()"> Add Projects </a>
 
 		<!-- TABLE PROJECTS -->
 		<table class="table table-bordered table-striped">
@@ -24,7 +26,8 @@
 				<tr>
 					<th>ID</th>
 					<th>Title
-						<form th:action="@{/projects/searchByProjectName}" class="form-inline">
+						<form th:action="@{/projects/searchByProjectName}"
+							class="form-inline">
 							<input id="search-input" class="form-control ml-5 mr-sm-2 mb-3"
 								type="search" name="projectName"
 								placeholder="Search by name project" />
@@ -48,10 +51,11 @@
 					<td th:text="${project.dateLastState}" />
 					<td>
 						<form th:action="@{/partners/partners-associated}" method="get">
-						   <input type="hidden" name="idProject" th:value="${project.idProject}"/>
-						   <button type="submit" class="btn btn-sm btn-info">
-						     <i class="bi bi-people-fill"></i>
-						   </button>
+							<input type="hidden" name="idProject"
+								th:value="${project.idProject}" />
+							<button type="submit" class="btn btn-sm btn-info">
+								<i class="bi bi-people-fill"></i>
+							</button>
 						</form>
 					</td>
 				</tr>
