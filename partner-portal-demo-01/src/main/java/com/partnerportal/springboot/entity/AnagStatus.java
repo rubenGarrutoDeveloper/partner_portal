@@ -9,12 +9,25 @@ import javax.persistence.Table;
 @Table(name = "anag_status")
 public class AnagStatus
 {
+
 	@Id
 	@Column(name = "idStatus")
 	private int idStatus;
 
 	@Column(name = "descState")
 	private String stateName;
+
+	public AnagStatus()
+	{
+		super();
+	}
+
+	public AnagStatus(int idStatus, String stateName)
+	{
+		super();
+		this.idStatus = idStatus;
+		this.stateName = stateName;
+	}
 
 	public int getIdStatus()
 	{

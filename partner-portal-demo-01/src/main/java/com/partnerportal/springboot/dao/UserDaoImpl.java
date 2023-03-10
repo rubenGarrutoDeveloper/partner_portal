@@ -5,18 +5,21 @@ import javax.persistence.EntityManager;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
 import com.partnerportal.springboot.entity.User;
 
 @Repository
-public class UserDaoImpl implements UserDao {
+public class UserDaoImpl implements UserDao
+{
 
 	@Autowired
 	private EntityManager entityManager;
 
 	@Override
-	public User findByUserName(String theUserName) {
+	public User findByUserName(String theUserName)
+	{
 		// get the current hibernate session
 		Session currentSession = entityManager.unwrap(Session.class);
 
@@ -24,9 +27,12 @@ public class UserDaoImpl implements UserDao {
 		Query<User> theQuery = currentSession.createQuery("from User where userName=:uName", User.class);
 		theQuery.setParameter("uName", theUserName);
 		User theUser = null;
-		try {
+		try
+		{
 			theUser = theQuery.getSingleResult();
-		} catch (Exception e) {
+		}
+		catch(Exception e)
+		{
 			theUser = null;
 		}
 
@@ -34,12 +40,19 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void save(User theUser) {
+	public void save(User theUser)
+	{
 		// get current hibernate session
 		Session currentSession = entityManager.unwrap(Session.class);
 
 		// create the user ... finally LOL
 		currentSession.saveOrUpdate(theUser);
+	}
+
+	@Override
+	public User getLoggedUser()
+	{
+		return findByUserName(SecurityContextHolder.getContext().getAuthentication().getName());
 	}
 
 }

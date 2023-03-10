@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.partnerportal.springboot.bean.PartnerBean;
 import com.partnerportal.springboot.bean.ProjectBean;
+import com.partnerportal.springboot.entity.Project;
 import com.partnerportal.springboot.entity.ViewPartner;
 import com.partnerportal.springboot.entity.ViewProject;
 
@@ -40,8 +41,24 @@ public class EntityConverter
 
 		return bean;
 	}
-	
-		public static List<PartnerBean> generatePartnerBeanList(List<ViewPartner> entityList)
+
+	public static Project generateProjectEntity(ProjectBean bean)
+	{
+		if(bean == null)
+			return new Project();
+
+		Project entity = new Project();
+
+		entity.setIdProject(bean.getIdProject());
+		entity.setTitle(bean.getTitle());
+		entity.setDescProject(bean.getDescProject());
+		entity.setCodeProject(bean.getCodeProject());
+		entity.setCreatedBy(bean.getCreatedBy());
+
+		return entity;
+	}
+
+	public static List<PartnerBean> generatePartnerBeanList(List<ViewPartner> entityList)
 	{
 		List<PartnerBean> beanList = new ArrayList<PartnerBean>();
 

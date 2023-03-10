@@ -1,10 +1,17 @@
 package com.partnerportal.springboot.entity;
 
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,6 +34,10 @@ public class Project
 
 	@Column(name = "createdBy", nullable = false)
 	private Integer createdBy;
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "rel_project_status", joinColumns = @JoinColumn(name = "idProject"), inverseJoinColumns = @JoinColumn(name = "idStatus"))
+	private Collection<AnagStatus> projectStatus;
 
 	public String getCodeProject()
 	{
@@ -76,6 +87,16 @@ public class Project
 	public void setDescProject(String descProject)
 	{
 		this.descProject = descProject;
+	}
+
+	public Collection<AnagStatus> getProjectStatus()
+	{
+		return projectStatus;
+	}
+
+	public void setProjectStatus(Collection<AnagStatus> projectStatus)
+	{
+		this.projectStatus = projectStatus;
 	}
 
 }

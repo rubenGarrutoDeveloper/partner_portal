@@ -13,7 +13,7 @@ public interface ProjectServiceInterface
 
 	public List<ProjectBean> searchByProjectName(String title); // Find a project based on title
 
-	public void save(Project newProject); // Save a project
+	public void save(ProjectBean newProject); // Save a project
 
 	public void deleteById(int idProject); // Delete a project based on ID
 }
