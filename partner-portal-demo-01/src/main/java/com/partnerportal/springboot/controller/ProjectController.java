@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.partnerportal.springboot.bean.ProjectBean;
+import com.partnerportal.springboot.entity.Project;
 import com.partnerportal.springboot.service.ProjectServiceImpl;
 import com.partnerportal.springboot.utility.Constants;
 
@@ -56,9 +57,16 @@ public class ProjectController
 	@GetMapping("/showFormForAdd")
 	public String showFormForAdd(Model theModel)
 	{
-		// create model attribute to bind form data
 		ProjectBean newProject = new ProjectBean();
-		theModel.addAttribute("newProject", newProject);
+		theModel.addAttribute("project", newProject);
+		return "/projects/project-form";
+	}
+
+	@GetMapping("/showFormForUpdate")
+	public String showFormForUpdate(@RequestParam("projectId") int idProject, Model theModel)
+	{
+		Project projectToUpdate = projectService.findById(idProject);
+		theModel.addAttribute("project", projectToUpdate);
 		return "/projects/project-form";
 	}
 

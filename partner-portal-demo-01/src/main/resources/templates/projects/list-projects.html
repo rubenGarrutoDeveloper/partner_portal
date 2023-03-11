@@ -66,7 +66,9 @@
 
 						<td>
 							<div sec:authorize="hasAnyRole('ROLE_PARTNER', 'ROLE_ADMIN')">
-								<!-- Add "update" button/link -->
+								<a
+									th:href="@{/projects/showFormForUpdate(projectId=${project.idProject})}"
+									class="btn btn-info btn-sm mr-5 mb-3"> Update </a>
 							</div>
 
 							<div sec:authorize="hasRole('ROLE_ADMIN')">
