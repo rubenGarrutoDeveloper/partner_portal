@@ -35,9 +35,29 @@ public class Project
 	@Column(name = "createdBy", nullable = false)
 	private Integer createdBy;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinTable(name = "rel_project_status", joinColumns = @JoinColumn(name = "idProject"), inverseJoinColumns = @JoinColumn(name = "idStatus"))
 	private Collection<AnagStatus> projectStatus;
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+	@JoinTable(name = "rel_project_partner", joinColumns = @JoinColumn(name = "idProject"), inverseJoinColumns = @JoinColumn(name = "idPartner"))
+	private Collection<Partner> partnerList;
+
+	public Project(int idProject, String title, String descProject, String codeProject, Integer createdBy)
+	{
+		super();
+		this.idProject = idProject;
+		this.title = title;
+		this.descProject = descProject;
+		this.codeProject = codeProject;
+		this.createdBy = createdBy;
+	}
+
+	public Project()
+	{
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public String getCodeProject()
 	{

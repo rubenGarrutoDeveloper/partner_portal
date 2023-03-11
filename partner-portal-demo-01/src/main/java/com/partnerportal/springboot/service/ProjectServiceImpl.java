@@ -87,6 +87,6 @@ public class ProjectServiceImpl implements ProjectServiceInterface
 	@Override
 	public void deleteById(int idProject)
 	{
-		// TODO Auto-generated method stub
+		projectDao.deleteById(idProject);
 	}
 }

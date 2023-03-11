@@ -72,4 +72,15 @@ public class ProjectController
 		return "redirect:/projects/list";
 	}
 
+	@GetMapping("/delete")
+	public String delete(@RequestParam("projectId") int idProject)
+	{
+		// delete the projects
+		projectService.deleteById(idProject);
+
+		// redirect to /employees/list
+		return "redirect:/projects/list";
+
+	}
+
 }
