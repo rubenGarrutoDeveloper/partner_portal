@@ -11,6 +11,24 @@
 
 	<div class="container">
 
+		<form th:action="@{/projects/list}" method="get" class="float-right">
+			<button type="submit" class="btn btn-sm btn-info">
+				<i class="bi bi-arrow-90deg-left"></i>
+			</button>
+		</form>
+
+		<h1>Project Details</h1>
+		<hr>
+		<h3
+			th:text="${project.title}+' - ['+${@projectController.getDescState(project.idStatus)}+']'">
+		</h3>
+
+
+		<div class="card">
+			<div class="card-body bg-warning" th:text="${project.descProject}"></div>
+		</div>
+		<hr>
+
 		<h3>Partners</h3>
 		<hr>
 
@@ -39,7 +57,9 @@
 			</tbody>
 		</table>
 	</div>
+
 	<div th:replace="fragments :: footer"></div>
+	<hr>
 </body>
 </html>
 

@@ -13,6 +13,7 @@ import com.partnerportal.springboot.dao.ProjectDao;
 import com.partnerportal.springboot.dao.UserDao;
 import com.partnerportal.springboot.dao.ViewProjectDao;
 import com.partnerportal.springboot.entity.Project;
+import com.partnerportal.springboot.entity.ViewProject;
 import com.partnerportal.springboot.utility.Constants;
 import com.partnerportal.springboot.utility.EntityConverter;
 
@@ -54,6 +55,20 @@ public class ProjectServiceImpl implements ProjectServiceInterface
 		}
 
 		return queryResult.get();
+	}
+
+	@Override
+	public ProjectBean findProjectBeanById(int idProject)
+	{
+		Optional<ViewProject> queryResult = viewProjectDao.findById(idProject);
+
+		if(!queryResult.isPresent())
+		{
+			throw new RuntimeException("Did not find project id - " + idProject);
+
+		}
+
+		return EntityConverter.generateProjectBean(queryResult.get());
 	}
 
 	@Override

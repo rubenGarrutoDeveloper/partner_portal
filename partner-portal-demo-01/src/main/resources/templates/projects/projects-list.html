@@ -38,7 +38,7 @@
 					<th>State</th>
 					<th>Created by</th>
 					<th>Date</th>
-					<th>Partners</th>
+					<th>Details</th>
 					<div sec:authorize="hasAnyRole('ROLE_PARTNER', 'ROLE_ADMIN')">
 						<th>Action</th>
 					</div>
@@ -54,11 +54,11 @@
 					<td th:text="${project.nameCreatedBy}" />
 					<td th:text="${project.dateLastState}" />
 					<td>
-						<form th:action="@{/partners/partners-associated}" method="get">
+						<form th:action="@{/projects/project-details}" method="get">
 							<input type="hidden" name="idProject"
 								th:value="${project.idProject}" />
 							<button type="submit" class="btn btn-sm btn-info">
-								<i class="bi bi-people-fill"></i>
+								<i class="bi bi-search"></i>
 							</button>
 						</form>
 					</td>

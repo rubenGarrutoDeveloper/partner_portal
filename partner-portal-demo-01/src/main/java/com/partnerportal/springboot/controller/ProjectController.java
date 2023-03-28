@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.partnerportal.springboot.bean.PartnerBean;
 import com.partnerportal.springboot.bean.ProjectBean;
 import com.partnerportal.springboot.entity.Project;
+import com.partnerportal.springboot.service.PartnerServiceImpl;
 import com.partnerportal.springboot.service.ProjectServiceImpl;
 import com.partnerportal.springboot.utility.Constants;
 
@@ -23,11 +25,13 @@ public class ProjectController
 {
 
 	private final ProjectServiceImpl projectService;
+	private final PartnerServiceImpl partnerServiceImpl;
 
 	@Autowired
-	public ProjectController(ProjectServiceImpl projectService)
+	public ProjectController(ProjectServiceImpl projectService, PartnerServiceImpl partnerServiceImpl)
 	{
 		this.projectService = projectService;
+		this.partnerServiceImpl = partnerServiceImpl;
 	}
 
 	@GetMapping("/list")
@@ -36,7 +40,7 @@ public class ProjectController
 		List<ProjectBean> projects = projectService.findAllProjects();
 		model.addAttribute("projects", projects);
 
-		return "/projects/list-projects";
+		return "/projects/projects-list";
 	}
 
 	//TODO: gestire tramite gestore delle anagrafiche (da implementare)
@@ -89,6 +93,17 @@ public class ProjectController
 		// redirect to /employees/list
 		return "redirect:/projects/list";
 
+	}
+
+	@GetMapping("/project-details")
+	public String getPartnersByIdProject(@RequestParam("idProject") int idProject, Model model)
+	{
+		ProjectBean projectSelected = projectService.findProjectBeanById(idProject);
+
+		List<PartnerBean> partners = partnerServiceImpl.findPartnersAssociatedToProject(idProject);
+		model.addAttribute("partners", partners);
+		model.addAttribute("project", projectSelected); // aggiungi il progetto come attributo
+		return "/projects/project-details";
 	}
 
 }
