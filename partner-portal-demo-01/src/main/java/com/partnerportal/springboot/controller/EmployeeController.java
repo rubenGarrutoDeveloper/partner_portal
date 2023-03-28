@@ -30,7 +30,6 @@ public class EmployeeController
 	@GetMapping("/list")
 	public String listEmployees(Model theModel)
 	{
-
 		// get employees from db
 		List<Employee> theEmployees = employeeService.findAll();
 

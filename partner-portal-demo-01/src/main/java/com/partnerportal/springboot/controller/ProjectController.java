@@ -71,7 +71,7 @@ public class ProjectController
 	}
 
 	@PostMapping("/save")
-	public String saveProject(@ModelAttribute("newProject") ProjectBean newProject)
+	public String saveProject(@ModelAttribute("project") ProjectBean newProject)
 	{
 		// save the new project
 		projectService.save(newProject);

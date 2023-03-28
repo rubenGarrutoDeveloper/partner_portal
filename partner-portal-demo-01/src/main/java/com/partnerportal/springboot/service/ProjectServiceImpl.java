@@ -70,10 +70,10 @@ public class ProjectServiceImpl implements ProjectServiceInterface
 	 */
 	public void save(ProjectBean newProjectBean)
 	{
-
 		// Convert the project bean into a project entity
 		Project projectToSave = EntityConverter.generateProjectEntity(newProjectBean);
 
+		//TODO BUG: fix these! not set CreatedBy and ProjectStatus if project already exist!
 		// Set the created by user ID to the ID of the currently logged in user
 		projectToSave.setCreatedBy(userDao.getLoggedUser().getId());
 
