@@ -55,7 +55,7 @@ public class ProjectController
 	{
 		List<ProjectBean> projectsList = projectService.searchByProjectName(projectName);
 		theModel.addAttribute("projects", projectsList);
-		return "/projects/list-projects";
+		return "/projects/projects-list";
 	}
 
 	@GetMapping("/showFormForAdd")
