@@ -12,6 +12,7 @@ import com.partnerportal.springboot.dao.AnagStatusDao;
 import com.partnerportal.springboot.dao.ProjectDao;
 import com.partnerportal.springboot.dao.UserDao;
 import com.partnerportal.springboot.dao.ViewProjectDao;
+import com.partnerportal.springboot.dao.ViewRelProjectPhaseDao;
 import com.partnerportal.springboot.entity.Project;
 import com.partnerportal.springboot.entity.ViewProject;
 import com.partnerportal.springboot.utility.Constants;
@@ -31,7 +32,7 @@ public class ProjectServiceImpl implements ProjectServiceInterface
 	private AnagStatusDao anagStatusDao;
 
 	@Autowired
-	public ProjectServiceImpl(ProjectDao projectDao, ViewProjectDao viewProjectDao)
+	public ProjectServiceImpl(ProjectDao projectDao, ViewProjectDao viewProjectDao, ViewRelProjectPhaseDao viewRelProjectPhaseDao)
 	{
 		this.projectDao = projectDao;
 		this.viewProjectDao = viewProjectDao;

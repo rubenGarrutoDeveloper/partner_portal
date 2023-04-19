@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.partnerportal.springboot.bean.PartnerBean;
 import com.partnerportal.springboot.bean.ProjectBean;
+import com.partnerportal.springboot.bean.RelProjectPhaseBean;
 import com.partnerportal.springboot.entity.Project;
 import com.partnerportal.springboot.service.PartnerServiceImpl;
+import com.partnerportal.springboot.service.PhaseProjectServiceImpl;
 import com.partnerportal.springboot.service.ProjectServiceImpl;
 import com.partnerportal.springboot.utility.Constants;
 
@@ -26,16 +28,27 @@ public class ProjectController
 
 	private final ProjectServiceImpl projectService;
 	private final PartnerServiceImpl partnerServiceImpl;
+	private final PhaseProjectServiceImpl phaseProjectServiceImpl;
 
 	@Autowired
-	public ProjectController(ProjectServiceImpl projectService, PartnerServiceImpl partnerServiceImpl)
+	public ProjectController(ProjectServiceImpl projectService, PartnerServiceImpl partnerServiceImpl, PhaseProjectServiceImpl phaseProjectServiceImpl)
 	{
 		this.projectService = projectService;
 		this.partnerServiceImpl = partnerServiceImpl;
+		this.phaseProjectServiceImpl = phaseProjectServiceImpl;
+	}
+
+	@GetMapping("/phase/list")
+	public String getAllProjects(Model model)
+	{
+		List<RelProjectPhaseBean> projectsPhaseList = phaseProjectServiceImpl.findAllProjectPhase();
+		model.addAttribute("projectsPhaseList", projectsPhaseList);
+
+		return "/projects/projects-phase-list";
 	}
 
 	@GetMapping("/list")
-	public String getAllProjects(Model model)
+	public String getAllProjectPhase(Model model)
 	{
 		List<ProjectBean> projects = projectService.findAllProjects();
 		model.addAttribute("projects", projects);
@@ -95,14 +108,32 @@ public class ProjectController
 
 	}
 
+	/**
+	 * Retrieves the details of a project and its associated partners and project
+	 * phases.
+	 * 
+	 * @param idProject the ID of the project to retrieve details for
+	 * @param model     the model object to add the retrieved data to
+	 * @return the view name for displaying the project details
+	 */
 	@GetMapping("/project-details")
 	public String getPartnersByIdProject(@RequestParam("idProject") int idProject, Model model)
 	{
+		// Retrieve the project with the given ID
 		ProjectBean projectSelected = projectService.findProjectBeanById(idProject);
 
+		// Retrieve a list of partners associated with the project
 		List<PartnerBean> partners = partnerServiceImpl.findPartnersAssociatedToProject(idProject);
+
+		// Retrieve a list of project phases for the project
+		List<RelProjectPhaseBean> projectPhaseList = phaseProjectServiceImpl.findPhaseOfThePrject(idProject);
+
+		// Add the partners, project, and projectPhaseList to the model object to be displayed in the view
 		model.addAttribute("partners", partners);
-		model.addAttribute("project", projectSelected); // aggiungi il progetto come attributo
+		model.addAttribute("project", projectSelected);
+		model.addAttribute("projectPhaseList", projectPhaseList);
+
+		// Return the view name for displaying the project details
 		return "/projects/project-details";
 	}
 

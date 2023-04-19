@@ -5,12 +5,40 @@ import java.util.List;
 
 import com.partnerportal.springboot.bean.PartnerBean;
 import com.partnerportal.springboot.bean.ProjectBean;
+import com.partnerportal.springboot.bean.RelProjectPhaseBean;
 import com.partnerportal.springboot.entity.Project;
 import com.partnerportal.springboot.entity.ViewPartner;
 import com.partnerportal.springboot.entity.ViewProject;
+import com.partnerportal.springboot.entity.ViewRelProjectPhase;
 
 public class EntityConverter
 {
+	public static RelProjectPhaseBean generateRelProjectPhaseBean(ViewRelProjectPhase viewRelProjectPhase)
+	{
+		RelProjectPhaseBean relProjectPhaseBean = new RelProjectPhaseBean();
+		relProjectPhaseBean.setUuid(viewRelProjectPhase.getUuid());
+		relProjectPhaseBean.setProjectId(viewRelProjectPhase.getIdProject());
+		relProjectPhaseBean.setTitle(viewRelProjectPhase.getTitle());
+		relProjectPhaseBean.setDescription(viewRelProjectPhase.getDescription());
+		relProjectPhaseBean.setStartTime(viewRelProjectPhase.getStartTime());
+		relProjectPhaseBean.setEndTime(viewRelProjectPhase.getEndTime());
+		relProjectPhaseBean.setFundRaised(viewRelProjectPhase.getFundRaised());
+		relProjectPhaseBean.setTotalFund(viewRelProjectPhase.getTotalFund());
+
+		return relProjectPhaseBean;
+	}
+
+	public static List<RelProjectPhaseBean> generateRelProjectPhaseBeanList(List<ViewRelProjectPhase> viewRelProjectPhases)
+	{
+		List<RelProjectPhaseBean> relProjectPhaseBeans = new ArrayList<>();
+		for(ViewRelProjectPhase viewRelProjectPhase : viewRelProjectPhases)
+		{
+			RelProjectPhaseBean relProjectPhaseBean = generateRelProjectPhaseBean(viewRelProjectPhase);
+			relProjectPhaseBeans.add(relProjectPhaseBean);
+		}
+		return relProjectPhaseBeans;
+	}
+
 	public static List<ProjectBean> generateProjectBeanList(List<ViewProject> entityList)
 	{
 		List<ProjectBean> beanList = new ArrayList<ProjectBean>();

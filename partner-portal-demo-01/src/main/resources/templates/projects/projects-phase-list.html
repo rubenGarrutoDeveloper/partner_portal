@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:replace="fragments :: html_head">
+</head>
+
+<body>
+	<div th:replace="fragments :: menu"></div>
+
+	<div class="container">
+
+		<h3>Projects Phase</h3>
+		<hr>
+
+		<!-- TABLE PROJECTS PHASE -->
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>title</th>
+					<th>Description</th>
+					<th>startTime</th>
+					<th>endTime</th>
+					<th>fundRaised</th>
+					<th>totalFund</th>
+					<div sec:authorize="hasAnyRole('ROLE_PARTNER', 'ROLE_ADMIN')">
+						<th>Action</th>
+					</div>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="projectPhase : ${projectsPhaseList}">
+					<td th:text="${projectPhase.title}" />
+					<td th:text="${projectPhase.Description}" />
+					<td th:text="${projectPhase.startTime}" />
+					<td th:text="${projectPhase.endTime}" />
+					<td th:text="${projectPhase.fundRaised}" />
+					<td th:text="${projectPhase.totalFund}" />
+					<td>
+						
+					</td>
+					<div sec:authorize="hasAnyRole('ROLE_ADMIN')">
+
+					</div>
+
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div th:replace="fragments :: footer"></div>
+</body>
+</html>
+
+
+

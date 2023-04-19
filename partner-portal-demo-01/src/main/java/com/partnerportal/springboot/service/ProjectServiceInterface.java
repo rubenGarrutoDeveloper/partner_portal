@@ -18,4 +18,5 @@ public interface ProjectServiceInterface
 	public void save(ProjectBean newProject); // Save a project
 
 	public void deleteById(int idProject); // Delete a project based on ID
+
 }

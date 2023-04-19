@@ -28,6 +28,42 @@
 			<div class="card-body bg-warning" th:text="${project.descProject}"></div>
 		</div>
 		<hr>
+		
+				<!-- TABLE PROJECTS PHASE -->
+		<table class="table table-bordered table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>title</th>
+					<th>Description</th>
+					<th>startTime</th>
+					<th>endTime</th>
+					<th>fundRaised</th>
+					<th>totalFund</th>
+					<div sec:authorize="hasAnyRole('ROLE_PARTNER', 'ROLE_ADMIN')">
+						<th>Action</th>
+					</div>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="projectPhase : ${projectPhaseList}">
+					<td th:text="${projectPhase.title}" />
+					<td th:text="${projectPhase.Description}" />
+					<td th:text="${projectPhase.startTime}" />
+					<td th:text="${projectPhase.endTime}" />
+					<td th:text="${projectPhase.fundRaised} +' €' " />
+					<td th:text="${projectPhase.totalFund} +' €' " />
+					<td>
+						
+					</td>
+					<div sec:authorize="hasAnyRole('ROLE_ADMIN')">
+
+					</div>
+
+
+				</tr>
+			</tbody>
+		</table>
 
 		<h3>Partners</h3>
 		<hr>
