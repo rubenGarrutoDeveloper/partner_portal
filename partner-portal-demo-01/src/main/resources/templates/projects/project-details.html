@@ -28,8 +28,8 @@
 			<div class="card-body bg-warning" th:text="${project.descProject}"></div>
 		</div>
 		<hr>
-		
-				<!-- TABLE PROJECTS PHASE -->
+
+		<!-- TABLE PROJECTS PHASE -->
 		<table class="table table-bordered table-striped">
 			<thead class="thead-dark">
 				<tr>
@@ -39,9 +39,7 @@
 					<th>endTime</th>
 					<th>fundRaised</th>
 					<th>totalFund</th>
-					<div sec:authorize="hasAnyRole('ROLE_PARTNER', 'ROLE_ADMIN')">
-						<th>Action</th>
-					</div>
+					<th>Donate</th>
 				</tr>
 			</thead>
 
@@ -54,13 +52,14 @@
 					<td th:text="${projectPhase.fundRaised} +' €' " />
 					<td th:text="${projectPhase.totalFund} +' €' " />
 					<td>
-						
+						<form th:action="@{/projects/donate}" method="get">
+							<input type="hidden" name="idProject"
+								th:value="${projectPhase.idProject}" />
+							<button type="submit" class="btn btn-sm btn-info">
+								<i class="bi bi-search"></i>
+							</button>
+						</form>
 					</td>
-					<div sec:authorize="hasAnyRole('ROLE_ADMIN')">
-
-					</div>
-
-
 				</tr>
 			</tbody>
 		</table>

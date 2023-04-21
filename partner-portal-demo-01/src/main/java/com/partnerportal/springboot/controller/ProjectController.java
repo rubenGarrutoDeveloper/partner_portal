@@ -137,4 +137,10 @@ public class ProjectController
 		return "/projects/project-details";
 	}
 
+	@GetMapping("/donate")
+	public String goToDonatePage(@RequestParam("idProject") int idProject, Model model)
+	{
+		return "/projects/donate";
+	}
+
 }

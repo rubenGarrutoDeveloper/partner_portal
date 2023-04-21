@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class RelProjectPhaseBean
 {
 	private String uuid;
-	private int projectId;
+	private int idProject;
 	private String title;
 	private String description;
 	private LocalDateTime startTime;

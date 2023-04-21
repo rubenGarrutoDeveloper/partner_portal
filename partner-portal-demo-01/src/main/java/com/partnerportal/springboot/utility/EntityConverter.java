@@ -17,7 +17,7 @@ public class EntityConverter
 	{
 		RelProjectPhaseBean relProjectPhaseBean = new RelProjectPhaseBean();
 		relProjectPhaseBean.setUuid(viewRelProjectPhase.getUuid());
-		relProjectPhaseBean.setProjectId(viewRelProjectPhase.getIdProject());
+		relProjectPhaseBean.setIdProject(viewRelProjectPhase.getIdProject());
 		relProjectPhaseBean.setTitle(viewRelProjectPhase.getTitle());
 		relProjectPhaseBean.setDescription(viewRelProjectPhase.getDescription());
 		relProjectPhaseBean.setStartTime(viewRelProjectPhase.getStartTime());

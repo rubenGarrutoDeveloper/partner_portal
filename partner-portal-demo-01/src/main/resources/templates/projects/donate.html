@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments :: html_head" />
+
+</head>
+
+<body>
+
+	<div class="container">
+
+		<h3>Donate</h3>
+		<hr>
+
+		<label for="amount">Amount: </label> <input type="number" id="amount"
+			name="amount" step="10" min="0" required> 
+			<hr>
+			<a
+			th:href="@{/projects/list}">Back to Projects List</a>
+
+	</div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
