@@ -41,14 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 				.antMatchers("/projects/list").permitAll()
 				.antMatchers("/systems/**").hasRole("ADMIN")
 
-				// Only admin and partner can add/save other employees
-				.antMatchers("/employees/showForm*").hasAnyRole("PARTNER", "ADMIN")
-				.antMatchers("/employees/save*").hasAnyRole("PARTNER", "ADMIN")
-
-				// Only admin delete other employees
-				.antMatchers("/employees/delete").hasRole("ADMIN")
-
-				.antMatchers("/employees/**").hasRole("USER")
+				
 				.antMatchers("/resources/**").permitAll()
 				.and()
 				.formLogin()
