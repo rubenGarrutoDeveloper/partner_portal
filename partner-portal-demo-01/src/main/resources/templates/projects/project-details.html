@@ -29,6 +29,10 @@
 		</div>
 		<hr>
 
+		<a th:href="@{/projects/addNewPhase(idProject=${project.idProject})}"
+			class="btn btn-primary btn-sm mr-5 mb-3"
+			sec:authorize="hasAnyRole('ROLE_ADMIN')"> Add New Phase </a>
+
 		<!-- TABLE PROJECTS PHASE -->
 		<table class="table table-bordered table-striped">
 			<thead class="thead-dark">
@@ -40,6 +44,9 @@
 					<th>fundRaised</th>
 					<th>totalFund</th>
 					<th>Donate</th>
+					<div sec:authorize="hasAnyRole('ROLE_PARTNER', 'ROLE_ADMIN')">
+						<th>Action</th>
+					</div>
 				</tr>
 			</thead>
 
@@ -60,6 +67,13 @@
 							</button>
 						</form>
 					</td>
+					<div sec:authorize="hasAnyRole('ROLE_ADMIN')">
+						<td>
+							<div sec:authorize="hasAnyRole('ROLE_ADMIN')">Update</div>
+
+							<div sec:authorize="hasRole('ROLE_ADMIN')">Delete</div>
+						</td>
+					</div>
 				</tr>
 			</tbody>
 		</table>

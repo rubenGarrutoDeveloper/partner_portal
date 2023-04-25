@@ -17,7 +17,7 @@
 			The number of projects is: <span th:text="${projects.size()}"></span>
 		</p>
 
-		<a th:href="@{/projects/showFormForAdd}"
+		<a th:href="@{/projects/addNewProject}"
 			class="btn btn-primary btn-sm mr-5 mb-3"
 			sec:authorize="!isAnonymous()"> Add Projects </a>
 

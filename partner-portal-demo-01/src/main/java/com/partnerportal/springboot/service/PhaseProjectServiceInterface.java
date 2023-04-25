@@ -9,4 +9,6 @@ public interface PhaseProjectServiceInterface
 	public List<RelProjectPhaseBean> findAllProjectPhase(); // Find all phases 
 
 	public List<RelProjectPhaseBean> findPhaseOfThePrject(int idProject); // Find all phases of a specific projects
+
+	public void save(RelProjectPhaseBean newRelProjectPhaseBean);
 }

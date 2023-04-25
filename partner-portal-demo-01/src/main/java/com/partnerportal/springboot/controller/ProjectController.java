@@ -27,56 +27,25 @@ public class ProjectController
 {
 
 	private final ProjectServiceImpl projectService;
-	private final PartnerServiceImpl partnerServiceImpl;
-	private final PhaseProjectServiceImpl phaseProjectServiceImpl;
+	private final PartnerServiceImpl partnerService;
+	private final PhaseProjectServiceImpl phaseProjectService;
 
 	@Autowired
-	public ProjectController(ProjectServiceImpl projectService, PartnerServiceImpl partnerServiceImpl, PhaseProjectServiceImpl phaseProjectServiceImpl)
+	public ProjectController(ProjectServiceImpl projectService, PartnerServiceImpl partnerService, PhaseProjectServiceImpl phaseProjectService)
 	{
 		this.projectService = projectService;
-		this.partnerServiceImpl = partnerServiceImpl;
-		this.phaseProjectServiceImpl = phaseProjectServiceImpl;
+		this.partnerService = partnerService;
+		this.phaseProjectService = phaseProjectService;
 	}
 
-	@GetMapping("/phase/list")
-	public String getAllProjects(Model model)
-	{
-		List<RelProjectPhaseBean> projectsPhaseList = phaseProjectServiceImpl.findAllProjectPhase();
-		model.addAttribute("projectsPhaseList", projectsPhaseList);
-
-		return "/projects/projects-phase-list";
-	}
-
+	// PROJECT MANAGEMENT SECTION ------------------------------------------------------------------------------------------------------------------------------------
 	@GetMapping("/list")
-	public String getAllProjectPhase(Model model)
+	public String getAllProjects(Model model)
 	{
 		List<ProjectBean> projects = projectService.findAllProjects();
 		model.addAttribute("projects", projects);
 
 		return "/projects/projects-list";
-	}
-
-	//TODO: gestire tramite gestore delle anagrafiche (da implementare)
-	@ResponseBody
-	public String getDescState(int idStatus)
-	{
-		return Constants.getStateProjectMap().get(idStatus);
-	}
-
-	@GetMapping("/searchByProjectName")
-	public String searchByProjectName(@RequestParam("projectName") String projectName, Model theModel)
-	{
-		List<ProjectBean> projectsList = projectService.searchByProjectName(projectName);
-		theModel.addAttribute("projects", projectsList);
-		return "/projects/projects-list";
-	}
-
-	@GetMapping("/showFormForAdd")
-	public String showFormForAdd(Model theModel)
-	{
-		ProjectBean newProject = new ProjectBean();
-		theModel.addAttribute("project", newProject);
-		return "/projects/project-form";
 	}
 
 	@GetMapping("/showFormForUpdate")
@@ -87,7 +56,7 @@ public class ProjectController
 		return "/projects/project-form";
 	}
 
-	@PostMapping("/save")
+	@PostMapping("/saveProject")
 	public String saveProject(@ModelAttribute("project") ProjectBean newProject)
 	{
 		// save the new project
@@ -105,7 +74,58 @@ public class ProjectController
 
 		// redirect to /employees/list
 		return "redirect:/projects/list";
+	}
 
+	//TODO: gestire tramite gestore delle anagrafiche (da implementare)
+	@ResponseBody
+	public String getDescState(int idStatus)
+	{
+		return Constants.getStateProjectMap().get(idStatus);
+	}
+
+	@GetMapping("/searchByProjectName")
+	public String searchByProjectName(@RequestParam("projectName") String projectName, Model theModel)
+	{
+		List<ProjectBean> projectsList = projectService.searchByProjectName(projectName);
+		theModel.addAttribute("projects", projectsList);
+		return "/projects/projects-list";
+	}
+
+	@GetMapping("/addNewProject")
+	public String addNewProject(Model theModel)
+	{
+		ProjectBean newProject = new ProjectBean();
+		theModel.addAttribute("project", newProject);
+		return "/projects/project-form";
+	}
+
+	// PHASE MANAGEMENT SECTION ------------------------------------------------------------------------------------------------------------------------------------
+	@GetMapping("/phase/list")
+	public String getAllProjectPhase(Model model)
+	{
+		List<RelProjectPhaseBean> projectsPhaseList = phaseProjectService.findAllProjectPhase();
+		model.addAttribute("projectsPhaseList", projectsPhaseList);
+
+		return "/projects/projects-phase-list";
+	}
+
+	@GetMapping("/addNewPhase")
+	public String addNewPhase(Model theModel, @RequestParam("idProject") int idProject)
+	{
+		RelProjectPhaseBean newRelProjectPhaseBean = new RelProjectPhaseBean(idProject);
+
+		theModel.addAttribute("newRelProjectPhaseBean", newRelProjectPhaseBean);
+		return "/projects/project-phase-form";
+	}
+
+	@PostMapping("/savePhaseForTheProject")
+	public String savePhase(@ModelAttribute("newRelProjectPhaseBean") RelProjectPhaseBean newRelProjectPhaseBean, Model model)
+	{
+		// save the new phase
+		phaseProjectService.save(newRelProjectPhaseBean);
+
+		// use a redirect to prevent duplicate submissions
+		return showProjectDetails(newRelProjectPhaseBean.getIdProject(), model);
 	}
 
 	/**
@@ -117,16 +137,16 @@ public class ProjectController
 	 * @return the view name for displaying the project details
 	 */
 	@GetMapping("/project-details")
-	public String getPartnersByIdProject(@RequestParam("idProject") int idProject, Model model)
+	public String showProjectDetails(@RequestParam("idProject") int idProject, Model model)
 	{
 		// Retrieve the project with the given ID
 		ProjectBean projectSelected = projectService.findProjectBeanById(idProject);
 
 		// Retrieve a list of partners associated with the project
-		List<PartnerBean> partners = partnerServiceImpl.findPartnersAssociatedToProject(idProject);
+		List<PartnerBean> partners = partnerService.findPartnersAssociatedToProject(idProject);
 
 		// Retrieve a list of project phases for the project
-		List<RelProjectPhaseBean> projectPhaseList = phaseProjectServiceImpl.findPhaseOfThePrject(idProject);
+		List<RelProjectPhaseBean> projectPhaseList = phaseProjectService.findPhaseOfThePrject(idProject);
 
 		// Add the partners, project, and projectPhaseList to the model object to be displayed in the view
 		model.addAttribute("partners", partners);

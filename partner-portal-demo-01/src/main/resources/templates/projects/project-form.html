@@ -1,42 +1,37 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace ="fragments :: html_head" />
+<head th:replace="fragments :: html_head" />
 
 </head>
 
 <body>
 
 	<div class="container">
-	
-		<h3>Project Directory</h3>
-		<hr>
-		
-		<p class="h4 mb-4">Save Project</p>
-	
-		<form th:action="@{/projects/save}"
-			  th:object="${project}" method="POST">
-		
-			<!-- Add hidden form field to handle update -->
-			<input type="hidden" th:field="*{idProject}" />
-			<input type="hidden" th:field="*{createdBy}" />
-			
-			<input type="text" th:field="*{codeProject}"
-					class="form-control mb-4 col-4" placeholder="ID Project">			
-			
-			<input type="text" th:field="*{title}"
-					class="form-control mb-4 col-4" placeholder="Title">
 
-			<input type="text" th:field="*{descProject}"
-					class="form-control mb-4 col-4" placeholder="Description">
+		<h3>Save Project</h3>
+		<hr>
+
+		<form th:action="@{/projects/saveProject}" th:object="${project}"
+			method="POST">
+
+			<!-- Add hidden form field to handle update -->
+			<input type="hidden" th:field="*{idProject}" /> <input type="hidden"
+				th:field="*{createdBy}" /> <input type="text"
+				th:field="*{codeProject}" class="form-control mb-4 col-4"
+				placeholder="ID Project"> <input type="text"
+				th:field="*{title}" class="form-control mb-4 col-4"
+				placeholder="Title"> <input type="text"
+				th:field="*{descProject}" class="form-control mb-4 col-4"
+				placeholder="Description">
 
 			<button type="submit" class="btn btn-info col-2">Save</button>
-						
+
 		</form>
-	
+
 		<hr>
 		<a th:href="@{/projects/list}">Back to Projects List</a>
-		
+
 	</div>
 </body>
 

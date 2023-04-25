@@ -18,22 +18,17 @@
 		<!-- ADD NEW EMPLOYEE -->
 		<form th:action="@{/employees/search}" class="form-inline">
 			<a th:href="@{/employees/showFormForAdd}"
-				class="btn btn-primary btn-sm mr-5 mb-3"> 
-				Add Employee
-			 </a>
+				class="btn btn-primary btn-sm mr-5 mb-3"> Add Employee </a>
 
 			<!-- SEARCH -->
-			<input 
-				class="form-control  ml-5 mr-sm-2 mb-3" 
-				type="search"
-				name="employeeName" 
-				placeholder="Search by name" />
+			<input class="form-control  ml-5 mr-sm-2 mb-3" type="search"
+				name="employeeName" placeholder="Search by name" />
 
 			<button class="btn btn-success btn-sm mr-5 mb-3" type="submit">Search</button>
 		</form>
 
 
-	<!-- TABLE EMPLOYEE -->
+		<!-- TABLE EMPLOYEE -->
 		<table class="table table-bordered table-striped">
 			<thead class="thead-dark">
 				<tr>

@@ -1,23 +1,23 @@
-
 /* Fonts setup */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import
+	url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap')
+	;
 
 /* Color setup */
-:root{
-	--primary: #3155e7;
-	--primary-dark: #2045d6;
-	--black: #010101;
-	--gray-1: #788190;
-	--gray-2: #d3d4db;
-	--white: #FFFFFF;	
-	--body: #fefefe;
+:root { -
+	-primary: #3155e7; -
+	-primary-dark: #2045d6; -
+	-black: #010101; -
+	-gray-1: #788190; -
+	-gray-2: #d3d4db; -
+	-white: #FFFFFF; -
+	-body: #fefefe;
 }
 
-body{
+body {
 	font-family: 'Plus Jakarta Sans', sans-serif;
-	background-color: var(--body);
+	background-color: var(- -body);
 }
-
 
 .funny {
 	font-style: italic;
@@ -25,18 +25,18 @@ body{
 }
 
 .gradient-custom {
-/* fallback for old browsers */
-background: #ff80c0;
-
-/* Chrome 10-25, Safari 5.1-6 */
-background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
-
-/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+	/* fallback for old browsers */
+	background: #ff80c0;
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1),
+		rgba(37, 117, 252, 1));
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: linear-gradient(to right, rgba(106, 17, 203, 1),
+		rgba(37, 117, 252, 1))
 }
 
-body { 
-    padding-top: 65px; 
+body {
+	padding-top: 65px;
 }
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {
@@ -56,46 +56,45 @@ body {
 	}
 }
 
-  .big-center-text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-  }
-  
+.big-center-text {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	text-align: center;
+}
+
 .btn-login {
-  background-color: #007bff;
-  color: #fff;
-  padding: 12px 24px;
-  font-size: 16px;
-  border-radius: 30px;
-  border: none;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
+	background-color: #007bff;
+	color: #fff;
+	padding: 12px 24px;
+	font-size: 16px;
+	border-radius: 30px;
+	border: none;
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
 }
 
 .btn-login:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.2);
-  z-index: -1;
-  transition: all 0.3s ease-out;
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 0;
+	height: 100%;
+	background-color: rgba(255, 255, 255, 0.2);
+	z-index: -1;
+	transition: all 0.3s ease-out;
 }
 
 .btn-login:hover:before {
-  width: 100%;
+	width: 100%;
 }
 
 .btn-login:hover {
-  background-color: #fff;
-  color: #007bff;
-  transition: all 0.3s ease-in-out;
+	background-color: #fff;
+	color: #007bff;
+	transition: all 0.3s ease-in-out;
 }
-
