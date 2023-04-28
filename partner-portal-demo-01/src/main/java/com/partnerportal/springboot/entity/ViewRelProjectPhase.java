@@ -17,11 +17,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ViewRelProjectPhase
 {
-	@Id
-	@Column(name = "uuid")
-	private String uuid;
 
-	@Column(name = "idProject")
+	@Id
+	@Column(name = "id_phase")
+	private int idPhase;
+
+	@Column(name = "id_project")
 	private int idProject;
 
 	@Column(name = "title")

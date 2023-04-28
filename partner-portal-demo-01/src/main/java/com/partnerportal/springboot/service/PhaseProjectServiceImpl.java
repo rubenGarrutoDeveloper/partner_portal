@@ -2,6 +2,8 @@ package com.partnerportal.springboot.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,7 @@ import com.partnerportal.springboot.dao.ViewRelProjectPhaseDao;
 import com.partnerportal.springboot.entity.ProjectPhase;
 import com.partnerportal.springboot.entity.RelProjectPhase;
 import com.partnerportal.springboot.utility.EntityConverter;
+import com.partnerportal.springboot.utility.EntityTools;
 
 @Service
 public class PhaseProjectServiceImpl implements PhaseProjectServiceInterface
@@ -36,7 +39,7 @@ public class PhaseProjectServiceImpl implements PhaseProjectServiceInterface
 	}
 
 	@Override
-	public List<RelProjectPhaseBean> findPhaseOfThePrject(int idProject)
+	public List<RelProjectPhaseBean> findPhaseOfTheProject(int idProject)
 	{
 		return EntityConverter.generateRelProjectPhaseBeanList(viewRelProjectPhaseDao.findPhaseOfTheProject(idProject));
 	}
@@ -59,6 +62,52 @@ public class PhaseProjectServiceImpl implements PhaseProjectServiceInterface
 
 		relProjectPhaseDao.save(relProjectPhase);
 
+	}
+
+	@Override
+	public void deletePhaseById(int idPhase)
+	{
+		projectPhaseDao.deleteById(idPhase);
+	}
+
+	@Override
+	public boolean deleteRelProjectPhase(int idProject, int idPhase)
+	{
+		int rowDeleted = relProjectPhaseDao.deleteRelProjectPhase(idProject, idPhase);
+
+		return (rowDeleted == 0) ? false : true;
+	}
+
+	@Override
+	public void deletePhaseFromProject(int idProject, int idPhase)
+	{
+		deleteRelProjectPhase(idProject, idPhase);
+		deletePhaseById(idPhase);
+	}
+
+	/**
+	 * Deletes all project phases and their relationships with the specified
+	 * project.
+	 *
+	 * @param idProject the id of the project to delete phases from
+	 * @return true if any project phases were deleted, false otherwise
+	 */
+	@Transactional
+	@Override
+	public boolean deleteAllPhasesFromProject(int idProject)
+	{
+		// Extract the ids of all project phases associated with the specified project
+		List<Integer> idPhaseList = EntityTools.extractIdPhases(relProjectPhaseDao.findPhaseOfTheProject(idProject));
+
+		// Delete all relationships between the project and its phases
+		int rowDeleted = relProjectPhaseDao.deleteAllPhasesFromProject(idProject);
+
+		// Delete all phases previously associated with the specified project
+		if(rowDeleted > 0)
+			rowDeleted = rowDeleted + projectPhaseDao.deletePhasesByIdList(idPhaseList);
+
+		// Return true if any project phases were deleted, false otherwise
+		return (rowDeleted == 0) ? false : true;
 	}
 
 }

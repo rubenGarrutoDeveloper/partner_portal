@@ -74,7 +74,7 @@
 							<div sec:authorize="hasRole('ROLE_ADMIN')">
 
 								<!-- Add "delete" button/link -->
-								<a th:href="@{/projects/delete(projectId=${project.idProject})}"
+								<a th:href="@{/projects/delete/project(projectId=${project.idProject})}"
 									class="btn btn-danger btn-sm mr-5 mb-3"
 									onclick="if (!(confirm('Are you sure you want to delete this?'))) return false">
 									Delete </a>

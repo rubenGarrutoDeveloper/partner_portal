@@ -67,13 +67,18 @@
 							</button>
 						</form>
 					</td>
-					<div sec:authorize="hasAnyRole('ROLE_ADMIN')">
-						<td>
-							<div sec:authorize="hasAnyRole('ROLE_ADMIN')">Update</div>
+					
+					<td>			<div sec:authorize="hasRole('ROLE_ADMIN')">
 
-							<div sec:authorize="hasRole('ROLE_ADMIN')">Delete</div>
-						</td>
-					</div>
+						<!-- Add "delete" button/link -->
+						<a
+							th:href="@{/projects/delete/phase(idProject=${project.idProject},idPhase=${projectPhase.idPhase})}"
+							class="btn btn-danger btn-sm mr-5 mb-3"
+							onclick="if (!(confirm('Are you sure you want to delete this?'))) return false">
+							Delete </a>
+
+					</div></td>
+		
 				</tr>
 			</tbody>
 		</table>

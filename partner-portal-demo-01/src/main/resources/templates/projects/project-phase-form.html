@@ -16,8 +16,10 @@
 			th:object="${newRelProjectPhaseBean}" method="POST">
 
 			<!-- Add hidden form field to handle update -->
-			<input type="hidden" th:field="*{idProject}" /> <input type="hidden"
-				th:field="*{uuid}" /> <input type="text" th:field="*{title}"
+			<input type="hidden" th:field="*{idProject}" /> 
+			
+			<input type="hidden"
+				th:field="*{idPhase}" /> <input type="text" th:field="*{title}"
 				class="form-control mb-4 col-4" placeholder="Title">
 
 			<textarea th:field="*{description}" class="form-control mb-4 col-4"
@@ -26,15 +28,12 @@
 			<label for="startTime">Start Time:</label> <input
 				type="datetime-local" th:field="*{startTime}"
 				class="form-control mb-4 col-4" id="startTime"
-				th:datetime="${newRelProjectPhaseBean.startTime}">
-
-			<label for="endTime">End Time:</label> <input type="datetime-local"
+				th:datetime="${newRelProjectPhaseBean.startTime}"> <label
+				for="endTime">End Time:</label> <input type="datetime-local"
 				th:field="*{endTime}" class="form-control mb-4 col-4" id="endTime"
-				th:datetime="${newRelProjectPhaseBean.endTime}">
-				
-				<input type="hidden" th:field="*{fundRaised}" /> 
-
-			<input type="number" step="1000" min="0" th:field="*{totalFund}"
+				th:datetime="${newRelProjectPhaseBean.endTime}"> <input
+				type="hidden" th:field="*{fundRaised}" /> <input type="number"
+				step="1000" min="0" th:field="*{totalFund}"
 				class="form-control mb-4 col-4" placeholder="Total Fund">
 
 			<button type="submit" class="btn btn-info col-2">Save</button>

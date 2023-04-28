@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RelProjectPhaseBean
 {
-	private String uuid;
 	private int idProject;
+	private int idPhase;
 	private String title;
 	private String description;
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")

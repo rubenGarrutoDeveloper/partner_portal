@@ -66,13 +66,16 @@ public class ProjectController
 		return "redirect:/projects/list";
 	}
 
-	@GetMapping("/delete")
-	public String delete(@RequestParam("projectId") int idProject)
+	@GetMapping("/delete/project")
+	public String deleteProject(@RequestParam("projectId") int idProject)
 	{
-		// delete the projects
+		// Delete all the phases related to the project
+		phaseProjectService.deleteAllPhasesFromProject(idProject);
+
+		// delete the project 
 		projectService.deleteById(idProject);
 
-		// redirect to /employees/list
+		// redirect
 		return "redirect:/projects/list";
 	}
 
@@ -118,6 +121,15 @@ public class ProjectController
 		return "/projects/project-phase-form";
 	}
 
+	@GetMapping("/delete/phase")
+	public String deletePhase(@RequestParam("idProject") int idProject, @RequestParam("idPhase") int idPhase, Model model)
+	{
+		// delete phase associated to the project
+		phaseProjectService.deletePhaseFromProject(idProject, idPhase);
+
+		return showProjectDetails(idProject, model);
+	}
+
 	@PostMapping("/savePhaseForTheProject")
 	public String savePhase(@ModelAttribute("newRelProjectPhaseBean") RelProjectPhaseBean newRelProjectPhaseBean, Model model)
 	{
@@ -146,7 +158,7 @@ public class ProjectController
 		List<PartnerBean> partners = partnerService.findPartnersAssociatedToProject(idProject);
 
 		// Retrieve a list of project phases for the project
-		List<RelProjectPhaseBean> projectPhaseList = phaseProjectService.findPhaseOfThePrject(idProject);
+		List<RelProjectPhaseBean> projectPhaseList = phaseProjectService.findPhaseOfTheProject(idProject);
 
 		// Add the partners, project, and projectPhaseList to the model object to be displayed in the view
 		model.addAttribute("partners", partners);
