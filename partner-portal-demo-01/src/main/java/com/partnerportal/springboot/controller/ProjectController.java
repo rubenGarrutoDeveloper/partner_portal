@@ -12,30 +12,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.partnerportal.springboot.bean.PartnerBean;
 import com.partnerportal.springboot.bean.ProjectBean;
 import com.partnerportal.springboot.bean.RelProjectPhaseBean;
+import com.partnerportal.springboot.bean.UserBean;
 import com.partnerportal.springboot.entity.Project;
-import com.partnerportal.springboot.service.PartnerServiceImpl;
 import com.partnerportal.springboot.service.PhaseProjectServiceImpl;
 import com.partnerportal.springboot.service.ProjectServiceImpl;
+import com.partnerportal.springboot.service.UserServiceImpl;
 import com.partnerportal.springboot.utility.Constants;
 
 @Controller
 @RequestMapping("/projects")
 public class ProjectController
 {
-
 	private final ProjectServiceImpl projectService;
-	private final PartnerServiceImpl partnerService;
 	private final PhaseProjectServiceImpl phaseProjectService;
+	private final UserServiceImpl userService;
 
 	@Autowired
-	public ProjectController(ProjectServiceImpl projectService, PartnerServiceImpl partnerService, PhaseProjectServiceImpl phaseProjectService)
+	public ProjectController(ProjectServiceImpl projectService, PhaseProjectServiceImpl phaseProjectService, UserServiceImpl userService)
 	{
 		this.projectService = projectService;
-		this.partnerService = partnerService;
 		this.phaseProjectService = phaseProjectService;
+		this.userService = userService;
 	}
 
 	// PROJECT MANAGEMENT SECTION ------------------------------------------------------------------------------------------------------------------------------------
@@ -155,13 +154,13 @@ public class ProjectController
 		ProjectBean projectSelected = projectService.findProjectBeanById(idProject);
 
 		// Retrieve a list of partners associated with the project
-		List<PartnerBean> partners = partnerService.findPartnersAssociatedToProject(idProject);
+		List<UserBean> users = userService.findUsersAssociatedToProject(idProject);
 
 		// Retrieve a list of project phases for the project
 		List<RelProjectPhaseBean> projectPhaseList = phaseProjectService.findPhaseOfTheProject(idProject);
 
 		// Add the partners, project, and projectPhaseList to the model object to be displayed in the view
-		model.addAttribute("partners", partners);
+		model.addAttribute("users", users);
 		model.addAttribute("project", projectSelected);
 		model.addAttribute("projectPhaseList", projectPhaseList);
 

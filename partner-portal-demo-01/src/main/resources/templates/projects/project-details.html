@@ -90,23 +90,17 @@
 		<table class="table table-bordered table-striped">
 			<thead class="thead-dark">
 				<tr>
-					<th>ID</th>
-					<th>Name</th>
+					<th>first name</th>
+					<th>last name</th>
 					<th>Mail</th>
-					<th>Phone</th>
-					<th>timeCreated</th>
-					<th>WebSite</th>
 				</tr>
 			</thead>
 
 			<tbody>
-				<tr th:each="partner : ${partners}">
-					<td th:text="${partner.codePartner}" />
-					<td th:text="${partner.descPartner}" />
-					<td th:text="${partner.mail}" />
-					<td th:text="${partner.phone}" />
-					<td th:text="${partner.timeCreated}" />
-					<td th:text="${partner.webSite}" />
+				<tr th:each="user : ${users}">
+					<td th:text="${user.firstName}" />
+					<td th:text="${user.lastName}" />
+					<td th:text="${user.email}" />
 				</tr>
 			</tbody>
 		</table>

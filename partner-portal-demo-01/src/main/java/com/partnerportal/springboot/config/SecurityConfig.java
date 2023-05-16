@@ -48,6 +48,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 				// Only admin delete other employees
 				.antMatchers("/employees/delete").hasRole("ADMIN")
 
+				.antMatchers("/projects/addNewPhase*").hasRole("ADMIN")
+
 				.antMatchers("/employees/**").hasRole("USER")
 				.antMatchers("/resources/**").permitAll()
 				.and()
