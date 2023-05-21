@@ -12,8 +12,7 @@
 		<h3>Save Project</h3>
 		<hr>
 
-		<form th:action="@{/projects/saveProject}" th:object="${project}"
-			method="POST">
+		<form th:action="@{/projects/saveProject}" th:object="${project}" method="POST">
 
 			<!-- Add hidden form field to handle update -->
 			<input type="hidden" th:field="*{idProject}" /> <input type="hidden"

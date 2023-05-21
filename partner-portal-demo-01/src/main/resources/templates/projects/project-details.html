@@ -2,9 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
-<head th:replace="fragments :: html_head">
-
-</head>
+<head th:replace="fragments :: html_head"></head>
 
 <body>
 	<div th:replace="fragments :: menu"></div>
@@ -67,18 +65,20 @@
 							</button>
 						</form>
 					</td>
-					
-					<td>			<div sec:authorize="hasRole('ROLE_ADMIN')">
 
-						<!-- Add "delete" button/link -->
-						<a
-							th:href="@{/projects/delete/phase(idProject=${project.idProject},idPhase=${projectPhase.idPhase})}"
-							class="btn btn-danger btn-sm mr-5 mb-3"
-							onclick="if (!(confirm('Are you sure you want to delete this?'))) return false">
-							Delete </a>
+					<td>
+						<div sec:authorize="hasRole('ROLE_ADMIN')">
 
-					</div></td>
-		
+							<!-- Add "delete" button/link -->
+							<a
+								th:href="@{/projects/delete/phase(idProject=${project.idProject},idPhase=${projectPhase.idPhase})}"
+								class="btn btn-danger btn-sm mr-5 mb-3"
+								onclick="if (!(confirm('Are you sure you want to delete this?'))) return false">
+								Delete </a>
+
+						</div>
+					</td>
+
 				</tr>
 			</tbody>
 		</table>

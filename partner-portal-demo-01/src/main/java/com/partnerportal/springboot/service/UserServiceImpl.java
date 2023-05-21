@@ -92,4 +92,9 @@ public class UserServiceImpl implements UserService
 	{
 		return EntityConverter.generateRelUserProjectBeanList(viewPartnerDao.findUserAssociatedToProject(idProject));
 	}
+
+	public User getLoggedUser()
+	{
+		return userDao.getLoggedUser();
+	}
 }
