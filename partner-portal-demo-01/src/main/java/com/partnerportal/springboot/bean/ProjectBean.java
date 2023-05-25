@@ -12,6 +12,7 @@ public class ProjectBean
 	private String codeProject;
 	private Integer createdBy;
 	private String nameCreatedBy;
+	private RelProjectPhaseBean relProjectPhaseBean;
 
 	public Date getDateLastState()
 	{
@@ -91,5 +92,13 @@ public class ProjectBean
 	public void setNameCreatedBy(String nameCreatedBy)
 	{
 		this.nameCreatedBy = nameCreatedBy;
+	}
+
+	public RelProjectPhaseBean getRelProjectPhaseBean() {
+		return relProjectPhaseBean;
+	}
+
+	public void setRelProjectPhaseBean(RelProjectPhaseBean relProjectPhaseBean) {
+		this.relProjectPhaseBean = relProjectPhaseBean;
 	}
 }
