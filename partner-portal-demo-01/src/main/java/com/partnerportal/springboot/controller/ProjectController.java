@@ -48,7 +48,7 @@ public class ProjectController
 	}
 
 	@GetMapping("/showFormForUpdate")
-	public String showFormForUpdate(@RequestParam("projectId") int idProject, Model theModel)
+	public String showFormForUpdate(@RequestParam("projectId") Integer idProject, Model theModel)
 	{
 		Project projectToUpdate = projectService.findById(idProject);
 		theModel.addAttribute("project", projectToUpdate);

@@ -14,14 +14,21 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name = "project")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Project
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idProject")
-	private int idProject;
+	private Integer idProject;
 
 	@Column(name = "title", nullable = false)
 	private String title;
@@ -43,7 +50,7 @@ public class Project
 	@JoinTable(name = "rel_project_user", joinColumns = @JoinColumn(name = "idProject"), inverseJoinColumns = @JoinColumn(name = "idUser"))
 	private Collection<User> partnerList;
 
-	public Project(int idProject, String title, String descProject, String codeProject, Integer createdBy)
+	public Project(Integer idProject, String title, String descProject, String codeProject, Integer createdBy)
 	{
 		super();
 		this.idProject = idProject;
@@ -52,71 +59,4 @@ public class Project
 		this.codeProject = codeProject;
 		this.createdBy = createdBy;
 	}
-
-	public Project()
-	{
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public String getCodeProject()
-	{
-		return codeProject;
-	}
-
-	public void setCodeProject(String codeProject)
-	{
-		this.codeProject = codeProject;
-	}
-
-	public Integer getCreatedBy()
-	{
-		return createdBy;
-	}
-
-	public void setCreatedBy(Integer createdBy)
-	{
-		this.createdBy = createdBy;
-	}
-
-	public int getIdProject()
-	{
-		return idProject;
-	}
-
-	public void setIdProject(int idProject)
-	{
-		this.idProject = idProject;
-	}
-
-	public String getTitle()
-	{
-		return title;
-	}
-
-	public void setTitle(String title)
-	{
-		this.title = title;
-	}
-
-	public String getDescProject()
-	{
-		return descProject;
-	}
-
-	public void setDescProject(String descProject)
-	{
-		this.descProject = descProject;
-	}
-
-	public Collection<AnagStatus> getProjectStatus()
-	{
-		return projectStatus;
-	}
-
-	public void setProjectStatus(Collection<AnagStatus> projectStatus)
-	{
-		this.projectStatus = projectStatus;
-	}
-
 }

@@ -30,4 +30,8 @@ public class Constants
 		return stateProjectMap;
 	}
 
+	// Anag Roles
+	public static int ID_ROLE_USER = 1;
+	public static int ID_ROLE_ADMIN = 3;
+
 }

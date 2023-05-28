@@ -34,10 +34,11 @@ CREATE TABLE `anag_status` (
 --
 -- Dumping data for table `anag_status`
 --
+-- ORDER BY:  `idStatus`
 
 LOCK TABLES `anag_status` WRITE;
 /*!40000 ALTER TABLE `anag_status` DISABLE KEYS */;
-INSERT INTO `anag_status` VALUES (1,'Started'),(2,'Work in Progress'),(3,'Finished');
+INSERT INTO `anag_status` (`idStatus`, `descState`) VALUES (1,'Started'),(2,'Work in Progress'),(3,'Finished');
 /*!40000 ALTER TABLE `anag_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,16 +55,17 @@ CREATE TABLE `employee` (
   `last_name` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `employee`
 --
+-- ORDER BY:  `id`
 
 LOCK TABLES `employee` WRITE;
 /*!40000 ALTER TABLE `employee` DISABLE KEYS */;
-INSERT INTO `employee` VALUES (2,'Emma','Baumgarten','emma@luv2code.com'),(3,'Avani','Gupta','avani@luv2code.com'),(4,'Yuri','Petrov','yuri@luv2code.com'),(5,'Juan','Vega','juan@luv2code.com'),(6,'Matteo','Bonariva','sss@ss.it');
+INSERT INTO `employee` (`id`, `first_name`, `last_name`, `email`) VALUES (1,'Leslie','Andrews','leslie@luv2code.com'),(2,'Emma','Baumgarten','emma@luv2code.com'),(3,'Avani','Gupta','avani@luv2code.com'),(4,'Yuri','Petrov','yuri@luv2code.com'),(5,'Juan','Vega','juan@luv2code.com');
 /*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -92,10 +94,11 @@ CREATE TABLE `partner` (
 --
 -- Dumping data for table `partner`
 --
+-- ORDER BY:  `idPartner`
 
 LOCK TABLES `partner` WRITE;
 /*!40000 ALTER TABLE `partner` DISABLE KEYS */;
-INSERT INTO `partner` VALUES (1,'PARTNER01','Partner 01','partner01@partner.com','+1 123-456-7890','2022-02-06 15:35:24',1,'www.partner01.com'),(2,'PARTNER02','Partner 02','partner02@partner.com','+1 234-567-8901','2022-02-06 15:35:24',1,'www.partner02.com'),(3,'PARTNER03','Partner 03','partner03@partner.com','+1 345-678-9012','2022-02-06 15:35:24',1,'www.partner03.com'),(4,'PARTNER04','Partner 04','partner04@partner.com','+1 456-789-0123','2022-02-06 15:35:24',1,'www.partner04.com'),(5,'PARTNER05','Partner 05','partner05@partner.com','+1 567-890-1234','2022-02-06 15:35:24',1,'www.partner05.com'),(6,'PARTNER06','Partner 06','partner06@partner.com','+1 678-901-2345','2022-02-06 15:35:24',1,'www.partner06.com'),(7,'PARTNER07','Partner 07','partner07@partner.com','+1 789-012-3456','2022-02-06 15:35:24',1,'www.partner07.com'),(8,'PARTNER08','Partner 08','partner08@partner.com','+1 890-123-4567','2022-02-06 15:35:24',1,'www.partner08.com'),(9,'PARTNER09','Partner 09','partner09@partner.com','+1 901-234-5678','2022-02-06 15:35:24',1,'www.partner09.com'),(10,'PTN010','Partner 10','partner10@example.com','+39 333 111222','2022-01-01',1,'https://www.partner10.com'),(11,'PTN011','Partner 11','partner11@example.com','+39 333 222333','2022-01-01',1,'https://www.partner11.com'),(12,'PTN012','Partner 12','partner12@example.com','+39 333 333444','2022-01-01',1,'https://www.partner12.com');
+INSERT INTO `partner` (`idPartner`, `codePartner`, `descPartner`, `mail`, `phone`, `timeCreated`, `createdBy`, `webSite`) VALUES (1,'PARTNER01','Partner 01','partner01@partner.com','+1 123-456-7890','2022-02-06 15:35:24',1,'www.partner01.com'),(2,'PARTNER02','Partner 02','partner02@partner.com','+1 234-567-8901','2022-02-06 15:35:24',1,'www.partner02.com'),(3,'PARTNER03','Partner 03','partner03@partner.com','+1 345-678-9012','2022-02-06 15:35:24',1,'www.partner03.com'),(4,'PARTNER04','Partner 04','partner04@partner.com','+1 456-789-0123','2022-02-06 15:35:24',1,'www.partner04.com'),(5,'PARTNER05','Partner 05','partner05@partner.com','+1 567-890-1234','2022-02-06 15:35:24',1,'www.partner05.com'),(6,'PARTNER06','Partner 06','partner06@partner.com','+1 678-901-2345','2022-02-06 15:35:24',1,'www.partner06.com'),(7,'PARTNER07','Partner 07','partner07@partner.com','+1 789-012-3456','2022-02-06 15:35:24',1,'www.partner07.com'),(8,'PARTNER08','Partner 08','partner08@partner.com','+1 890-123-4567','2022-02-06 15:35:24',1,'www.partner08.com'),(9,'PARTNER09','Partner 09','partner09@partner.com','+1 901-234-5678','2022-02-06 15:35:24',1,'www.partner09.com'),(10,'PTN010','Partner 10','partner10@example.com','+39 333 111222','2022-01-01',1,'https://www.partner10.com'),(11,'PTN011','Partner 11','partner11@example.com','+39 333 222333','2022-01-01',1,'https://www.partner11.com'),(12,'PTN012','Partner 12','partner12@example.com','+39 333 333444','2022-01-01',1,'https://www.partner12.com');
 /*!40000 ALTER TABLE `partner` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,16 +117,17 @@ CREATE TABLE `project` (
   `createdBy` int NOT NULL,
   PRIMARY KEY (`idProject`),
   UNIQUE KEY `uc_code_project` (`codeProject`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `project`
 --
+-- ORDER BY:  `idProject`
 
 LOCK TABLES `project` WRITE;
 /*!40000 ALTER TABLE `project` DISABLE KEYS */;
-INSERT INTO `project` VALUES (1,'partner portal 2','Our project is a web application that allows users to manage and collaborate on projects, tasks, and documents in a team environment. With features such as task assignment, time tracking, and document sharing.','PP0001',3),(2,'ciorc pleis','Descrizione del progetto 2','CP0001',3),(3,'Progetto 3','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus ornare arcu, ut rutrum elit eleifend at. Aenean quis nibh fringilla, venenatis nulla non, dictum tellus.   Quisque cursus ornare arcu, ut rutrum elit eleifend at. ','P30001',3);
+INSERT INTO `project` (`idProject`, `title`, `descProject`, `codeProject`, `createdBy`) VALUES (1,'partner portal','Descrizione del progetto 1','PP0001',3),(2,'ciorc pleis','Descrizione del progetto 2','CP0001',3),(3,'Progetto 3','Descrizione del progetto 3','P30001',3);
 /*!40000 ALTER TABLE `project` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150,10 +154,11 @@ CREATE TABLE `project_phase` (
 --
 -- Dumping data for table `project_phase`
 --
+-- ORDER BY:  `id`
 
 LOCK TABLES `project_phase` WRITE;
 /*!40000 ALTER TABLE `project_phase` DISABLE KEYS */;
-INSERT INTO `project_phase` VALUES (1,'Phase 1: Found Raising','Raising initial funds for the project','2023-01-01 10:00:00','2023-01-31 23:59:59',5000.00,10000.00),(2,'Phase 2: Payments system','Devoloping payments system','2023-02-01 00:00:00','2023-03-15 23:59:59',12000.00,20000.00),(3,'Phase 3: Beta Testing of Payments System','Testing the project with a limited audience','2023-03-16 00:00:00','2023-04-15 23:59:59',18000.00,25000.00),(4,'Phase 1: Design','Designing the project','2023-02-15 10:00:00','2023-02-28 23:59:59',5000.00,10000.00),(5,'Phase 2: Development','Developing the project','2023-03-01 00:00:00','2023-04-15 23:59:59',12000.00,20000.00),(6,'Phase 1: Prototype','Building a prototype of the project','2023-04-01 10:00:00','2023-04-30 23:59:59',5000.00,10000.00),(7,'Phase 2: Testing','Testing the project prototype','2023-05-01 00:00:00','2023-05-31 23:59:59',12000.00,20000.00);
+INSERT INTO `project_phase` (`id`, `title`, `description`, `start_time`, `end_time`, `fund_raised`, `total_fund`) VALUES (1,'Phase 1: Found Raising','Raising initial funds for the project','2023-01-01 10:00:00','2023-01-31 23:59:59',5000.00,10000.00),(2,'Phase 2: Payments system','Devoloping payments system','2023-02-01 00:00:00','2023-03-15 23:59:59',12000.00,20000.00),(3,'Phase 3: Beta Testing of Payments System','Testing the project with a limited audience','2023-03-16 00:00:00','2023-04-15 23:59:59',18000.00,25000.00),(4,'Phase 1: Design','Designing the project','2023-02-15 10:00:00','2023-02-28 23:59:59',5000.00,10000.00),(5,'Phase 2: Development','Developing the project','2023-03-01 00:00:00','2023-04-15 23:59:59',12000.00,20000.00),(6,'Phase 1: Prototype','Building a prototype of the project','2023-04-01 10:00:00','2023-04-30 23:59:59',5000.00,10000.00),(7,'Phase 2: Testing','Testing the project prototype','2023-05-01 00:00:00','2023-05-31 23:59:59',12000.00,20000.00);
 /*!40000 ALTER TABLE `project_phase` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -179,10 +184,11 @@ CREATE TABLE `rel_project_partner` (
 --
 -- Dumping data for table `rel_project_partner`
 --
+-- ORDER BY:  `idRelProjectPartner`
 
 LOCK TABLES `rel_project_partner` WRITE;
 /*!40000 ALTER TABLE `rel_project_partner` DISABLE KEYS */;
-INSERT INTO `rel_project_partner` VALUES (7,2,2),(8,2,3),(9,2,4),(10,2,5);
+INSERT INTO `rel_project_partner` (`idRelProjectPartner`, `idProject`, `idPartner`) VALUES (1,1,1),(2,1,2),(3,1,3),(4,1,4),(5,1,5),(6,1,6),(7,2,2),(8,2,3),(9,2,4),(10,2,5),(11,3,4),(12,3,5);
 /*!40000 ALTER TABLE `rel_project_partner` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -208,10 +214,11 @@ CREATE TABLE `rel_project_phase` (
 --
 -- Dumping data for table `rel_project_phase`
 --
+-- ORDER BY:  `id`
 
 LOCK TABLES `rel_project_phase` WRITE;
 /*!40000 ALTER TABLE `rel_project_phase` DISABLE KEYS */;
-INSERT INTO `rel_project_phase` VALUES (1,1,1),(2,1,2),(3,1,3),(4,2,4),(5,2,5),(6,2,6),(22,3,6),(23,3,7);
+INSERT INTO `rel_project_phase` (`id`, `id_project`, `id_phase`) VALUES (1,1,1),(2,1,2),(3,1,3),(4,2,4),(5,2,5),(6,2,6),(22,3,6),(23,3,7);
 /*!40000 ALTER TABLE `rel_project_phase` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -232,16 +239,17 @@ CREATE TABLE `rel_project_status` (
   KEY `FK_rel_project_status_anag_state` (`idStatus`),
   CONSTRAINT `FK_rel_project_status_anag_state` FOREIGN KEY (`idStatus`) REFERENCES `anag_status` (`idStatus`),
   CONSTRAINT `FK_rel_project_status_project` FOREIGN KEY (`idProject`) REFERENCES `project` (`idProject`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `rel_project_status`
 --
+-- ORDER BY:  `idRelProjectStatus`
 
 LOCK TABLES `rel_project_status` WRITE;
 /*!40000 ALTER TABLE `rel_project_status` DISABLE KEYS */;
-INSERT INTO `rel_project_status` VALUES (1,2,1,'2023-02-20 16:16:51'),(2,2,2,'2023-02-20 16:17:03'),(11,3,1,'2023-03-28 21:53:25'),(13,1,1,'2023-04-04 20:44:59');
+INSERT INTO `rel_project_status` (`idRelProjectStatus`, `idProject`, `idStatus`, `createdAt`) VALUES (1,2,1,'2023-02-20 17:16:51'),(2,2,2,'2023-02-20 17:17:03'),(3,3,1,'2023-02-20 17:17:07'),(4,3,2,'2023-02-20 17:17:12'),(5,3,3,'2023-02-20 17:17:17'),(6,1,1,'2023-02-20 17:45:04');
 /*!40000 ALTER TABLE `rel_project_status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -262,10 +270,11 @@ CREATE TABLE `role` (
 --
 -- Dumping data for table `role`
 --
+-- ORDER BY:  `id`
 
 LOCK TABLES `role` WRITE;
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
-INSERT INTO `role` VALUES (1,'ROLE_USER'),(2,'ROLE_PARTNER'),(3,'ROLE_ADMIN');
+INSERT INTO `role` (`id`, `name`) VALUES (1,'ROLE_USER'),(2,'ROLE_PARTNER'),(3,'ROLE_ADMIN');
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -284,16 +293,17 @@ CREATE TABLE `user` (
   `last_name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `user`
 --
+-- ORDER BY:  `id`
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'mario.rossi','$2a$10$vfKc4NYxiitYGXjXUySj1uEorw2OK/B/nC/crMqau2ljVYzZiju22','Mario','Rossi','mario@mail.com'),(2,'luigi.verdi','$2a$10$vfKc4NYxiitYGXjXUySj1uEorw2OK/B/nC/crMqau2ljVYzZiju22','Luigi','Verdi','luigi@mail.com'),(3,'ruben.garruto','$2a$10$vfKc4NYxiitYGXjXUySj1uEorw2OK/B/nC/crMqau2ljVYzZiju22','Ruben','Garruto','ruben@mail.com'),(4,'mimmo','$2a$10$vfKc4NYxiitYGXjXUySj1uEorw2OK/B/nC/crMqau2ljVYzZiju22','mimmo','memmo','mimmo@mail.com'),(14,'ngrok','$2a$10$CsdMbD0bxi3D7FeRauEbN.gXV.jk2hbvw5s6vQnu2zfYl.OvSVtyS','ngrok','io','ngrok@mail.com');
+INSERT INTO `user` (`id`, `username`, `password`, `first_name`, `last_name`, `email`) VALUES (1,'mario.rossi','$2a$10$vfKc4NYxiitYGXjXUySj1uEorw2OK/B/nC/crMqau2ljVYzZiju22','Mario','Rossi','mario@mail.com'),(2,'luigi.verdi','$2a$10$vfKc4NYxiitYGXjXUySj1uEorw2OK/B/nC/crMqau2ljVYzZiju22','Luigi','Verdi','luigi@mail.com'),(3,'ruben.garruto','$2a$10$vfKc4NYxiitYGXjXUySj1uEorw2OK/B/nC/crMqau2ljVYzZiju22','Ruben','Garruto','ruben@mail.com'),(4,'mimmo','$2a$10$vfKc4NYxiitYGXjXUySj1uEorw2OK/B/nC/crMqau2ljVYzZiju22','mimmo','memmo','mimmo@mail.com');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -317,10 +327,11 @@ CREATE TABLE `users_roles` (
 --
 -- Dumping data for table `users_roles`
 --
+-- ORDER BY:  `user_id`,`role_id`
 
 LOCK TABLES `users_roles` WRITE;
 /*!40000 ALTER TABLE `users_roles` DISABLE KEYS */;
-INSERT INTO `users_roles` VALUES (1,1),(2,1),(3,1),(14,1),(2,2),(3,2),(3,3);
+INSERT INTO `users_roles` (`user_id`, `role_id`) VALUES (1,1),(2,1),(2,2),(3,1),(3,2),(3,3);
 /*!40000 ALTER TABLE `users_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -445,4 +456,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-19 18:13:10
+-- Dump completed on 2023-04-19 18:30:55

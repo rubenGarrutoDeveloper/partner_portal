@@ -9,13 +9,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name = "view_project")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ViewProject
 {
 	@Id
 	@Column(name = "idProject")
-	private int idProject;
+	private Integer idProject;
 
 	@Column(name = "title", nullable = false)
 	private String title;
@@ -38,85 +45,4 @@ public class ViewProject
 
 	@Column(name = "dateLastState")
 	private Date dateLastState;
-
-	public Date getDateLastState()
-	{
-		return dateLastState;
-	}
-
-	public void setDateLastState(Date dateLastState)
-	{
-		this.dateLastState = dateLastState;
-	}
-
-	public int getIdStatus()
-	{
-		return anagStatus.getIdStatus();
-	}
-
-	public void setIdStatus(int idStatus)
-	{
-		this.anagStatus.setIdStatus(idStatus);
-	}
-
-	public int getIdProject()
-	{
-		return idProject;
-	}
-
-	public void setIdProject(int idProject)
-	{
-		this.idProject = idProject;
-	}
-
-	public String getTitle()
-	{
-		return title;
-	}
-
-	public void setTitle(String title)
-	{
-		this.title = title;
-	}
-
-	public String getDescProject()
-	{
-		return descProject;
-	}
-
-	public void setDescProject(String descProject)
-	{
-		this.descProject = descProject;
-	}
-
-	public String getCodeProject()
-	{
-		return codeProject;
-	}
-
-	public void setCodeProject(String codeProject)
-	{
-		this.codeProject = codeProject;
-	}
-
-	public Integer getCreatedBy()
-	{
-		return createdBy;
-	}
-
-	public void setCreatedBy(Integer createdBy)
-	{
-		this.createdBy = createdBy;
-	}
-
-	public String getNameCreatedBy()
-	{
-		return nameCreatedBy;
-	}
-
-	public void setNameCreatedBy(String nameCreatedBy)
-	{
-		this.nameCreatedBy = nameCreatedBy;
-	}
-
 }

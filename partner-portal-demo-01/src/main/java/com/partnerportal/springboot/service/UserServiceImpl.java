@@ -1,6 +1,5 @@
 package com.partnerportal.springboot.service;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,11 +14,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.partnerportal.springboot.bean.UserBean;
-import com.partnerportal.springboot.dao.RoleDao;
+import com.partnerportal.springboot.dao.RoleRepository;
 import com.partnerportal.springboot.dao.UserDao;
+import com.partnerportal.springboot.dao.UserRolesRepository;
 import com.partnerportal.springboot.dao.ViewRelProjectUserDao;
 import com.partnerportal.springboot.entity.Role;
 import com.partnerportal.springboot.entity.User;
+import com.partnerportal.springboot.entity.UsersRoles;
 import com.partnerportal.springboot.user.CrmUser;
 import com.partnerportal.springboot.utility.EntityConverter;
 
@@ -32,10 +33,13 @@ public class UserServiceImpl implements UserService
 	private UserDao userDao;
 
 	@Autowired
+	private UserRolesRepository userRolesRepository;
+
+	@Autowired
 	private ViewRelProjectUserDao viewPartnerDao;
 
 	@Autowired
-	private RoleDao roleDao;
+	private RoleRepository roleRepository;
 
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -50,7 +54,7 @@ public class UserServiceImpl implements UserService
 
 	@Override
 	@Transactional
-	public void save(CrmUser crmUser)
+	public Integer save(CrmUser crmUser)
 	{
 		User user = new User();
 
@@ -61,11 +65,8 @@ public class UserServiceImpl implements UserService
 		user.setLastName(crmUser.getLastName());
 		user.setEmail(crmUser.getEmail());
 
-		// give user default role of "user"
-		user.setRoles(Arrays.asList(roleDao.findRoleByName("ROLE_USER")));
-
 		// save user in the database
-		userDao.save(user);
+		return userDao.save(user);
 	}
 
 	@Override
@@ -79,7 +80,10 @@ public class UserServiceImpl implements UserService
 			throw new UsernameNotFoundException("Invalid username or password.");
 		}
 
-		return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
+		List<Integer> userRolesList = userRolesRepository.findUserRolesIds(user.getId());
+		Collection<Role> roles = roleRepository.findByRoleIds(userRolesList);
+
+		return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(), mapRolesToAuthorities(roles));
 	}
 
 	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles)
@@ -96,5 +100,21 @@ public class UserServiceImpl implements UserService
 	public User getLoggedUser()
 	{
 		return userDao.getLoggedUser();
+	}
+
+	@Override
+	@Transactional
+	public void updateUser(User user)
+	{
+		userDao.save(user);
+	}
+
+	@Override
+	public void assignRoleToUser(Integer idUser, Integer idRole)
+	{
+		UsersRoles usersRoles = new UsersRoles(idUser, idRole);
+
+		userRolesRepository.save(usersRoles);
+
 	}
 }

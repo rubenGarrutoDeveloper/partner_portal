@@ -45,7 +45,7 @@ public class ProjectServiceImpl implements ProjectServiceInterface
 	}
 
 	@Override
-	public Project findById(int idProject)
+	public Project findById(Integer idProject)
 	{
 		Optional<Project> queryResult = projectDao.findById(idProject);
 
@@ -59,7 +59,7 @@ public class ProjectServiceImpl implements ProjectServiceInterface
 	}
 
 	@Override
-	public ProjectBean findProjectBeanById(int idProject)
+	public ProjectBean findProjectBeanById(Integer idProject)
 	{
 		Optional<ViewProject> queryResult = viewProjectDao.findById(idProject);
 
@@ -101,7 +101,7 @@ public class ProjectServiceImpl implements ProjectServiceInterface
 	}
 
 	@Override
-	public void deleteById(int idProject)
+	public void deleteById(Integer idProject)
 	{
 		projectDao.deleteById(idProject);
 	}

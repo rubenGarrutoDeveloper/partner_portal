@@ -19,7 +19,7 @@
 
 		<a th:href="@{/projects/addNewProject}"
 			class="btn btn-primary btn-sm mr-5 mb-3"
-			sec:authorize="!isAnonymous()"> Add Projects </a>
+			sec:authorize="hasRole('ROLE_ADMIN')"> Add Projects </a>
 
 		<!-- TABLE PROJECTS -->
 		<table class="table table-bordered table-striped">

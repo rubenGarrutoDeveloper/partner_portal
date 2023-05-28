@@ -9,6 +9,6 @@ public interface UserDao
 
 	public User getLoggedUser();
 
-	public void save(User user);
+	public Integer save(User user);
 
 }

@@ -40,13 +40,22 @@ public class UserDaoImpl implements UserDao
 	}
 
 	@Override
-	public void save(User theUser)
+	public Integer save(User theUser)
 	{
-		// get current hibernate session
-		Session currentSession = entityManager.unwrap(Session.class);
+		try
+		{
+			// get current hibernate session
+			Session currentSession = entityManager.unwrap(Session.class);
 
-		// create the user ... finally LOL
-		currentSession.saveOrUpdate(theUser);
+			currentSession.saveOrUpdate(theUser);
+
+			return theUser.getId();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override

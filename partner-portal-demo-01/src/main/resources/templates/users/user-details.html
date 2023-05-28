@@ -10,16 +10,17 @@
 		<hr>
 
 		<!-- Registration Form -->
-		<form th:action="@{/users/updateLoggedUser}" th:object="${loggedUser}"
-			method="POST" class="form-horizontal">
+		<form th:action="@{/users/updateLoggedUser}" th:object="${loggedUser}" method="POST" class="form-horizontal">
 
 
 			<!-- Add hidden form field to handle update -->
 			<input type="hidden" th:field="*{id}" />
+			<input type="hidden" th:field="*{password}" />
+			<input type="hidden" th:field="*{userName}" />
 			<input type="text" th:field="*{firstName}"
 				class="form-control mb-4 col-4" placeholder="Name">
 			<input type="text" th:field="*{lastName}"
-				class="form-control mb-4 col-4" placeholder="SUrname">
+				class="form-control mb-4 col-4" placeholder="Surname">
 			<input type="text" th:field="*{email}"
 				class="form-control mb-4 col-4" placeholder="E-mail">
 

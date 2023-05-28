@@ -19,61 +19,69 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.partnerportal.springboot.entity.User;
 import com.partnerportal.springboot.service.UserService;
 import com.partnerportal.springboot.user.CrmUser;
+import com.partnerportal.springboot.utility.Constants;
 
 @Controller
 @RequestMapping("/register")
-public class RegistrationController {
-	
-    @Autowired
-    private UserService userService;
-	
-    private Logger logger = Logger.getLogger(getClass().getName());
-    
+public class RegistrationController
+{
+
+	@Autowired
+	private UserService userService;
+
+	private Logger logger = Logger.getLogger(getClass().getName());
+
 	@InitBinder
-	public void initBinder(WebDataBinder dataBinder) {
-		
+	public void initBinder(WebDataBinder dataBinder)
+	{
+
 		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
-		
+
 		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
-	}	
-	
+	}
+
 	@GetMapping("/showRegistrationForm")
-	public String showMyLoginPage(Model theModel) {
-		
+	public String showMyLoginPage(Model theModel)
+	{
+
 		theModel.addAttribute("crmUser", new CrmUser());
-		
+
 		return "registration-form";
 	}
 
 	@PostMapping("/processRegistrationForm")
-	public String processRegistrationForm(
-				@Valid @ModelAttribute("crmUser") CrmUser theCrmUser, 
-				BindingResult theBindingResult, 
-				Model theModel) {
-		
+	public String processRegistrationForm(@Valid @ModelAttribute("crmUser") CrmUser theCrmUser, BindingResult theBindingResult, Model theModel)
+	{
+
 		String userName = theCrmUser.getUserName();
 		logger.info("Processing registration form for: " + userName);
-		
+
 		// form validation
-		 if (theBindingResult.hasErrors()){
-			 return "registration-form";
-	        }
+		if(theBindingResult.hasErrors())
+		{
+			return "registration-form";
+		}
 
 		// check the database if user already exists
-        User existing = userService.findByUserName(userName);
-        if (existing != null){
-        	theModel.addAttribute("crmUser", new CrmUser());
+		User existing = userService.findByUserName(userName);
+		if(existing != null)
+		{
+			theModel.addAttribute("crmUser", new CrmUser());
 			theModel.addAttribute("registrationError", "User name already exists.");
 
 			logger.warning("User name already exists.");
-        	return "registration-form";
-        }
-        
-        // create user account        						
-        userService.save(theCrmUser);
-        
-        logger.info("Successfully created user: " + userName);
-        
-        return "registration-confirmation";		
+			return "registration-form";
+		}
+
+		// create user account        						
+		Integer idNewUser = userService.save(theCrmUser);
+
+		// Assign default role 
+		if(idNewUser != null)
+			userService.assignRoleToUser(idNewUser, Constants.ID_ROLE_USER);
+
+		logger.info("Successfully created user: " + userName);
+
+		return "registration-confirmation";
 	}
 }

@@ -13,7 +13,11 @@ public interface UserService extends UserDetailsService
 
 	public User findByUserName(String userName);
 
-	public void save(CrmUser crmUser);
+	public Integer save(CrmUser crmUser);
 
 	public List<UserBean> findUsersAssociatedToProject(int idProject);
+
+	public void updateUser(User user);
+
+	public void assignRoleToUser(Integer idUser, Integer idRole);
 }

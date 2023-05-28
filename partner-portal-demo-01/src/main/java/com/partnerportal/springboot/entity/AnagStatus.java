@@ -5,48 +5,22 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name = "anag_status")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class AnagStatus
 {
 
 	@Id
 	@Column(name = "idStatus")
-	private int idStatus;
+	private Integer idStatus;
 
 	@Column(name = "descState")
 	private String stateName;
-
-	public AnagStatus()
-	{
-		super();
-	}
-
-	public AnagStatus(int idStatus, String stateName)
-	{
-		super();
-		this.idStatus = idStatus;
-		this.stateName = stateName;
-	}
-
-	public int getIdStatus()
-	{
-		return idStatus;
-	}
-
-	public void setIdStatus(int idStatus)
-	{
-		this.idStatus = idStatus;
-	}
-
-	public String getStateName()
-	{
-		return stateName;
-	}
-
-	public void setStateName(String stateName)
-	{
-		this.stateName = stateName;
-	}
-
 }

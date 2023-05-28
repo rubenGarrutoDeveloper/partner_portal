@@ -12,11 +12,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "role")
+@Table(name = "users_roles")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Role
+public class UsersRoles
 {
 
 	@Id
@@ -24,7 +24,17 @@ public class Role
 	@Column(name = "id")
 	private Integer id;
 
-	@Column(name = "name")
-	private String name;
+	@Column(name = "user_id")
+	private Integer userId;
+
+	@Column(name = "role_id")
+	private Integer roleId;
+
+	public UsersRoles(Integer userId, Integer roleId)
+	{
+		super();
+		this.userId = userId;
+		this.roleId = roleId;
+	}
 
 }
